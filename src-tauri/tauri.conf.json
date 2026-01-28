@@ -8,7 +8,7 @@
   },
   "package": {
     "productName": "Conduct",
-    "version": "1.0.0+20260128-1750"
+    "version": "1.0.0+20260129-0028"
   },
   "tauri": {
     "windows": [

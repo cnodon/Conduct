@@ -64,7 +64,6 @@ export const LocalView: React.FC = () => {
         onChangeTab={setActiveTab} 
         counts={counts}
         onRefresh={reload}
-        onAddSkill={() => setShowAddModal(true)}
         loading={loading}
       />
 

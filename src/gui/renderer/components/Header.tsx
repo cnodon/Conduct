@@ -8,7 +8,6 @@ interface HeaderProps {
   onChangeTab: (tab: TabId) => void;
   counts: Record<string, number | null>;
   onRefresh: () => void;
-  onAddSkill: () => void;
   loading?: boolean;
 }
 
@@ -17,7 +16,6 @@ export const Header: React.FC<HeaderProps> = ({
   onChangeTab, 
   counts,
   onRefresh,
-  onAddSkill,
   loading 
 }) => {
   const { strings } = useI18n();
@@ -97,25 +95,6 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
 
         <div style={{ display: 'flex', gap: '8px' }}>
-          <button
-            onClick={onAddSkill}
-            title={strings.header.addSkillTitle}
-            style={{
-              width: '36px', height: '36px',
-              borderRadius: '8px',
-              border: '1px solid var(--glass-border)',
-              background: 'transparent',
-              color: '#e2e8f0',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              cursor: 'pointer',
-              transition: 'background 0.2s'
-            }}
-            onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.05)'}
-            onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
-          >
-            <span className="material-symbols-outlined">add</span>
-          </button>
-          
           <button
             onClick={onRefresh}
             disabled={loading}

@@ -8,7 +8,7 @@
 - **冲突与覆盖提示**：检测同名 Skills 并标注实际生效项。
 - **安装与管理**：支持从 Git 安装，且可将本地技能一键安装到其他 CLI。
 - **市场聚合**：基于 `skills_repo.json` 聚合仓库，缓存加速并支持浏览安装。
-- **市场体验优化**：同步状态可视化、骨架加载、分页进度展示、手动更新（缓存为空时自动拉取一次）。
+- **市场体验优化**：同步状态可视化、骨架加载、分页进度展示、手动更新（缓存为空时自动拉取一次）、新增 Repo。
 
 ## 安装
 
@@ -59,6 +59,18 @@ npm run dev:tauri
 npm run gui
 ```
 
+## 卸载
+
+提供一键卸载脚本（删除应用、日志与本地配置）：
+
+```bash
+# 预览将删除的内容
+./scripts/uninstall_conduct.sh --dry-run
+
+# 执行卸载
+./scripts/uninstall_conduct.sh --yes
+```
+
 ## 版本号与编译时间
 - 构建脚本 `npm run version:build` 在打包前执行。
 - 版本格式：`<base>+YYYYMMDD-HHMM`，其中 base 来自 `BASE_VERSION` 环境变量（默认 `1.0.0`）。
@@ -75,6 +87,7 @@ npm run gui
 - macOS: `~/.Conduct/skills_repo.json`
 - Windows: `%USERPROFILE%\\.Conduct\\skills_repo.json`
 - 可通过环境变量 `CONDUCT_SKILLS_REPO_PATH` 指定自定义路径。
+- Marketplace 列表默认按每页 18 个技能分页显示，并支持页码跳转。
 
 ## 相关文档
 - 实现与规则细节：`impl.md`

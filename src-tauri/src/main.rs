@@ -4,7 +4,7 @@ mod scan;
 
 use scan::{
   run_scan, run_scan_codex, run_scan_gemini, read_skill_dir_structure, 
-  ScanOptions, ScanResult, FileNode, DiscoveredSkill, discover_remote_repo, find_skills_repo_path, install_local_skill as install_local_skill_impl, ensure_runtime_log_exists, log_runtime_event, conduct_repo_config_path
+  ScanOptions, ScanResult, FileNode, DiscoveredSkill, discover_remote_repo, find_skills_repo_path, install_local_skill as install_local_skill_impl, ensure_runtime_log_exists, log_runtime_event, conduct_repo_config_path, add_skills_repo as add_skills_repo_impl, AddRepoResult
 };
 use log::LevelFilter;
 use std::fs;
@@ -81,6 +81,13 @@ async fn install_skill(platform: String, url: String) -> Result<(), String> {
 #[tauri::command]
 async fn fetch_marketplace_skills() -> Result<Vec<scan::MarketplaceSkill>, String> {
   tauri::async_runtime::spawn_blocking(|| scan::fetch_marketplace_skills())
+    .await
+    .map_err(|error| error.to_string())?
+}
+
+#[tauri::command]
+async fn add_skills_repo(url: String) -> Result<AddRepoResult, String> {
+  tauri::async_runtime::spawn_blocking(move || add_skills_repo_impl(url))
     .await
     .map_err(|error| error.to_string())?
 }
@@ -239,6 +246,7 @@ fn main() {
       install_skill,
       get_skill_files,
       fetch_marketplace_skills,
+      add_skills_repo,
       read_marketplace_cache,
       get_skills_repo_path,
       install_local_skill,

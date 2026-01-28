@@ -169,6 +169,17 @@ type StringsShape = {
     syncUpdatedAt: (time: string) => string;
     syncButton: string;
     syncButtonUpdating: string;
+    addRepo: string;
+    addRepoTitle: string;
+    addRepoDescription: string;
+    addRepoPlaceholder: string;
+    addRepoConfirm: string;
+    addRepoAdding: string;
+    addRepoInvalid: string;
+    addRepoRequired: string;
+    addRepoFailed: string;
+    syncAddingRepo: string;
+    syncRepoAdded: (repo: string, count: number) => string;
     byAuthor: ByAuthorText;
     local: string;
     installed: string;
@@ -176,6 +187,8 @@ type StringsShape = {
     install: string;
     loadMore: string;
     loadAll: string;
+    pagePrev: string;
+    pageNext: string;
     paginationStatus: (shown: number, total: number, page: number, pages: number) => string;
     description: string;
     tags: string;
@@ -355,6 +368,17 @@ export const STRINGS: Record<Language, StringsShape> = {
       syncUpdatedAt: (time) => `Updated at ${time}`,
       syncButton: 'Update now',
       syncButtonUpdating: 'Updating...',
+      addRepo: 'Add Repo',
+      addRepoTitle: 'Add Skill Repository',
+      addRepoDescription: 'Paste a Git repository URL that contains one or more skills.',
+      addRepoPlaceholder: 'https://github.com/owner/repo',
+      addRepoConfirm: 'Add',
+      addRepoAdding: 'Adding...',
+      addRepoInvalid: 'Please enter a valid repository URL.',
+      addRepoRequired: 'Repository URL is required.',
+      addRepoFailed: 'Failed to add repository.',
+      syncAddingRepo: 'Validating repository...',
+      syncRepoAdded: (repo, count) => `Added ${repo} · ${count} skills`,
       byAuthor: (author) => `by ${author}`,
       local: 'Local',
       installed: 'Installed',
@@ -362,6 +386,8 @@ export const STRINGS: Record<Language, StringsShape> = {
       install: 'Install',
       loadMore: 'Load more',
       loadAll: 'Show all',
+      pagePrev: 'Prev',
+      pageNext: 'Next',
       paginationStatus: (shown, total, page, pages) => `Showing ${shown}/${total} · Page ${page}/${pages}`,
       description: 'Description',
       tags: 'Tags',
@@ -539,6 +565,17 @@ export const STRINGS: Record<Language, StringsShape> = {
       syncUpdatedAt: (time) => `更新于 ${time}`,
       syncButton: '手动更新',
       syncButtonUpdating: '更新中...',
+      addRepo: '新增 Repo',
+      addRepoTitle: '新增技能仓库',
+      addRepoDescription: '请输入包含一个或多个技能的 Git 仓库地址。',
+      addRepoPlaceholder: 'https://github.com/owner/repo',
+      addRepoConfirm: '新增',
+      addRepoAdding: '新增中...',
+      addRepoInvalid: '请输入有效的仓库地址。',
+      addRepoRequired: '仓库地址不能为空。',
+      addRepoFailed: '新增仓库失败。',
+      syncAddingRepo: '正在校验仓库...',
+      syncRepoAdded: (repo, count) => `已新增 ${repo} · ${count} 个技能`,
       byAuthor: (author) => `作者 ${author}`,
       local: '本地',
       installed: '已安装',
@@ -546,6 +583,8 @@ export const STRINGS: Record<Language, StringsShape> = {
       install: '安装',
       loadMore: '加载更多',
       loadAll: '全部显示',
+      pagePrev: '上一页',
+      pageNext: '下一页',
       paginationStatus: (shown, total, page, pages) => `显示 ${shown}/${total} · 第 ${page}/${pages} 页`,
       description: '描述',
       tags: '标签',

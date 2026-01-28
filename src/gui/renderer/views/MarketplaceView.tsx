@@ -12,6 +12,14 @@ interface MarketplaceSkill {
   url: string;
 }
 
+interface AddRepoResult {
+  skills: MarketplaceSkill[];
+  addedRepo: string;
+  addedSkills: number;
+  totalSkills: number;
+  totalRepos: number;
+}
+
 const theme = {
   bg: '#0c0a09',
   surface: '#1c1917',
@@ -90,7 +98,7 @@ export const MarketplaceView: React.FC = () => {
   const { strings } = useI18n();
   const [skills, setSkills] = useState<MarketplaceSkill[]>([]);
   const [query, setQuery] = useState('');
-  const [visibleCount, setVisibleCount] = useState(12);
+  const [pageIndex, setPageIndex] = useState(0);
   const [refreshing, setRefreshing] = useState(false);
   const [installingUrl, setInstallingUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -102,9 +110,13 @@ export const MarketplaceView: React.FC = () => {
   const [syncStage, setSyncStage] = useState<'idle' | 'cache' | 'fetch' | 'merge' | 'done' | 'error'>('idle');
   const [syncDetail, setSyncDetail] = useState<string | null>(null);
   const [syncUpdatedAt, setSyncUpdatedAt] = useState<string | null>(null);
+  const [showAddRepo, setShowAddRepo] = useState(false);
+  const [repoUrl, setRepoUrl] = useState('');
+  const [repoError, setRepoError] = useState<string | null>(null);
+  const [repoAdding, setRepoAdding] = useState(false);
   const initialFetchTriggered = useRef(false);
 
-  const pageSize = 12;
+  const pageSize = 18;
 
   const handleRefresh = () => {
     setError(null);
@@ -116,6 +128,7 @@ export const MarketplaceView: React.FC = () => {
       .then((data) => {
         const normalized = normalizeSkills(data, strings.marketplace);
         setSkills(normalized);
+        setPageIndex(0);
         setSyncStage('merge');
         setSyncDetail(strings.marketplace.syncUpdated(normalized.length));
         setSyncStage('done');
@@ -131,6 +144,56 @@ export const MarketplaceView: React.FC = () => {
       })
       .finally(() => {
         setRefreshing(false);
+      });
+  };
+
+  const handleAddRepo = () => {
+    const trimmed = repoUrl.trim();
+    if (!trimmed) {
+      setRepoError(strings.marketplace.addRepoRequired);
+      return;
+    }
+    let isHttpUrl = false;
+    try {
+      const url = new URL(trimmed);
+      isHttpUrl = url.protocol === 'http:' || url.protocol === 'https:';
+    } catch {
+      isHttpUrl = false;
+    }
+
+    const isGitSsh = /^git@/i.test(trimmed);
+    if (!isHttpUrl && !isGitSsh) {
+      setRepoError(strings.marketplace.addRepoInvalid);
+      return;
+    }
+
+    setRepoError(null);
+    setRepoAdding(true);
+    setSyncActive(true);
+    setSyncStage('fetch');
+    setSyncDetail(strings.marketplace.syncAddingRepo);
+
+    invoke<AddRepoResult>('add_skills_repo', { url: trimmed })
+      .then((result) => {
+        const normalized = normalizeSkills(result.skills, strings.marketplace);
+        setSkills(normalized);
+        setPageIndex(0);
+        setSyncStage('merge');
+        setSyncDetail(strings.marketplace.syncRepoAdded(result.addedRepo, result.addedSkills));
+        setSyncUpdatedAt(new Date().toLocaleTimeString());
+        setSyncStage('done');
+        setSyncActive(false);
+        setShowAddRepo(false);
+        setRepoUrl('');
+      })
+      .catch((err) => {
+        setRepoError(err instanceof Error ? err.message : strings.marketplace.addRepoFailed);
+        setSyncStage('error');
+        setSyncDetail(strings.marketplace.syncFailed);
+        setSyncActive(false);
+      })
+      .finally(() => {
+        setRepoAdding(false);
       });
   };
 
@@ -173,7 +236,7 @@ export const MarketplaceView: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    setVisibleCount(pageSize);
+    setPageIndex(0);
   }, [query]);
 
   const filteredSkills = useMemo(() => {
@@ -202,13 +265,33 @@ export const MarketplaceView: React.FC = () => {
     return repos.size;
   }, [skills]);
 
-  const visibleSkills = filteredSkills.slice(0, visibleCount);
-  const hasMore = filteredSkills.length > visibleCount;
   const totalCount = filteredSkills.length;
-  const showingCount = visibleSkills.length;
   const pageCount = Math.max(1, Math.ceil(totalCount / pageSize));
-  const currentPage = Math.max(1, Math.ceil(showingCount / pageSize));
-  const paginationProgress = totalCount > 0 ? Math.min(100, (showingCount / totalCount) * 100) : 0;
+  const currentPageIndex = Math.min(pageIndex, Math.max(0, pageCount - 1));
+  const currentPage = currentPageIndex + 1;
+  const startIndex = currentPageIndex * pageSize;
+  const pagedSkills = filteredSkills.slice(startIndex, startIndex + pageSize);
+  const showingCount = pagedSkills.length;
+  const paginationProgress = totalCount > 0 ? Math.min(100, (currentPage / pageCount) * 100) : 0;
+
+  useEffect(() => {
+    if (currentPageIndex !== pageIndex) {
+      setPageIndex(currentPageIndex);
+    }
+  }, [currentPageIndex, pageIndex]);
+
+  const pageItems = useMemo(() => {
+    if (pageCount <= 7) {
+      return Array.from({ length: pageCount }, (_, index) => index + 1);
+    }
+    if (currentPage <= 4) {
+      return [1, 2, 3, 4, 5, 'ellipsis', pageCount];
+    }
+    if (currentPage >= pageCount - 3) {
+      return [1, 'ellipsis', pageCount - 4, pageCount - 3, pageCount - 2, pageCount - 1, pageCount];
+    }
+    return [1, 'ellipsis', currentPage - 1, currentPage, currentPage + 1, 'ellipsis', pageCount];
+  }, [currentPage, pageCount]);
 
   const syncProgress = syncStage === 'cache'
     ? 28
@@ -275,13 +358,25 @@ export const MarketplaceView: React.FC = () => {
                   <span className="marketplace-sync-time">{strings.marketplace.syncUpdatedAt(syncUpdatedAt)}</span>
                 )}
               </div>
-              <button
-                className="marketplace-sync-button"
-                onClick={handleRefresh}
-                disabled={refreshing}
-              >
-                {refreshing ? strings.marketplace.syncButtonUpdating : strings.marketplace.syncButton}
-              </button>
+              <div className="marketplace-sync-actions">
+                <button
+                  className="marketplace-sync-button"
+                  onClick={handleRefresh}
+                  disabled={refreshing}
+                >
+                  {refreshing ? strings.marketplace.syncButtonUpdating : strings.marketplace.syncButton}
+                </button>
+                <button
+                  className="marketplace-sync-button secondary"
+                  onClick={() => {
+                    setRepoError(null);
+                    setShowAddRepo(true);
+                  }}
+                  disabled={repoAdding}
+                >
+                  {strings.marketplace.addRepo}
+                </button>
+              </div>
             </div>
           </header>
 
@@ -367,7 +462,7 @@ export const MarketplaceView: React.FC = () => {
               </div>
             )}
 
-            {visibleSkills.map((skill, index) => {
+            {pagedSkills.map((skill, index) => {
               const icon = getIconForSkill(skill);
               const accent = getAccentColor(skill.name);
               const isLocal = skill.url.startsWith('local:');
@@ -532,26 +627,108 @@ export const MarketplaceView: React.FC = () => {
               </div>
             </div>
             <div className="marketplace-pagination-actions">
-              {hasMore && (
+              <div className="marketplace-pagination-nav">
                 <button
-                  onClick={() => setVisibleCount((count) => Math.min(count + pageSize, totalCount))}
-                  className="marketplace-pagination-button"
+                  className="marketplace-page-button ghost"
+                  onClick={() => setPageIndex(Math.max(0, currentPageIndex - 1))}
+                  disabled={currentPageIndex === 0}
                 >
-                  {strings.marketplace.loadMore}
+                  <span className="material-symbols-outlined">chevron_left</span>
+                  <span className="label">{strings.marketplace.pagePrev}</span>
                 </button>
-              )}
-              {hasMore && (
+                <div className="marketplace-page-list">
+                  {pageItems.map((item, index) => (
+                    item === 'ellipsis'
+                      ? (
+                        <span key={`ellipsis-${index}`} className="marketplace-page-ellipsis">…</span>
+                      ) : (
+                        <button
+                          key={`page-${item}`}
+                          className={`marketplace-page-button ${item === currentPage ? 'active' : ''}`}
+                          onClick={() => setPageIndex((item as number) - 1)}
+                        >
+                          {item}
+                        </button>
+                      )
+                  ))}
+                </div>
                 <button
-                  onClick={() => setVisibleCount(totalCount)}
-                  className="marketplace-pagination-button ghost"
+                  className="marketplace-page-button ghost"
+                  onClick={() => setPageIndex(Math.min(pageCount - 1, currentPageIndex + 1))}
+                  disabled={currentPageIndex >= pageCount - 1}
                 >
-                  {strings.marketplace.loadAll}
+                  <span className="label">{strings.marketplace.pageNext}</span>
+                  <span className="material-symbols-outlined">chevron_right</span>
                 </button>
-              )}
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      {showAddRepo && (
+        <div className="marketplace-modal">
+          <div className="marketplace-modal-card" style={{ width: '420px' }}>
+            <h3 style={{ marginTop: 0, color: 'white', fontFamily: 'Space Grotesk' }}>
+              {strings.marketplace.addRepoTitle}
+            </h3>
+            <p style={{ color: '#94a3b8', fontSize: '14px' }}>
+              {strings.marketplace.addRepoDescription}
+            </p>
+            <input
+              type="text"
+              value={repoUrl}
+              onChange={(event) => setRepoUrl(event.target.value)}
+              placeholder={strings.marketplace.addRepoPlaceholder}
+              style={{
+                width: '100%',
+                padding: '10px 12px',
+                borderRadius: '10px',
+                border: '1px solid rgba(148, 163, 184, 0.3)',
+                background: 'rgba(15, 23, 42, 0.4)',
+                color: 'white',
+                outline: 'none',
+                fontSize: '13px',
+              }}
+            />
+            {repoError && (
+              <div style={{ marginTop: '8px', color: '#fca5a5', fontSize: '12px' }}>
+                {repoError}
+              </div>
+            )}
+            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '8px', marginTop: '18px' }}>
+              <button
+                onClick={() => setShowAddRepo(false)}
+                style={{
+                  padding: '8px 16px',
+                  background: 'transparent',
+                  border: '1px solid rgba(255,255,255,0.1)',
+                  color: '#94a3b8',
+                  borderRadius: '6px',
+                  cursor: 'pointer'
+                }}
+              >
+                {strings.marketplace.cancel}
+              </button>
+              <button
+                onClick={handleAddRepo}
+                disabled={repoAdding}
+                style={{
+                  padding: '8px 16px',
+                  background: 'var(--primary)',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '6px',
+                  cursor: repoAdding ? 'not-allowed' : 'pointer',
+                  opacity: repoAdding ? 0.7 : 1
+                }}
+              >
+                {repoAdding ? strings.marketplace.addRepoAdding : strings.marketplace.addRepoConfirm}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Skill Detail Slide-over Panel */}
       {detailSkill && (

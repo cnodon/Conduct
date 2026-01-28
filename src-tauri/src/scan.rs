@@ -560,12 +560,12 @@ fn parse_git_url(url: &str) -> (String, Option<String>, Option<String>) {
   (url.to_string(), None, None)
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct RepoList {
   repositories: Vec<RepoConfig>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 struct RepoConfig {
   #[allow(dead_code)]
   name: String,
@@ -574,7 +574,23 @@ struct RepoConfig {
   description: String,
 }
 
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct AddRepoResult {
+  pub skills: Vec<MarketplaceSkill>,
+  pub added_repo: String,
+  pub added_skills: usize,
+  pub total_skills: usize,
+  pub total_repos: usize,
+}
+
 fn marketplace_cache_path() -> PathBuf {
+  if let Some(config_path) = find_skills_repo_path() {
+    return config_path
+      .parent()
+      .unwrap_or_else(|| Path::new("."))
+      .join("skills_list.json");
+  }
   let candidates = ["skills_list.json", "../skills_list.json"];
   for name in candidates {
     let path = Path::new(name);
@@ -583,6 +599,45 @@ fn marketplace_cache_path() -> PathBuf {
     }
   }
   PathBuf::from("skills_list.json")
+}
+
+fn normalize_repo_url(url: &str) -> String {
+  let mut value = url.trim().trim_end_matches('/').to_string();
+  if value.ends_with(".git") {
+    value = value.trim_end_matches(".git").to_string();
+  }
+  value.to_lowercase()
+}
+
+fn repo_name_from_url(url: &str) -> String {
+  let trimmed = url.trim();
+  if let Some(rest) = trimmed.strip_prefix("git@") {
+    if let Some(path) = rest.split(':').nth(1) {
+      let cleaned = path.trim_end_matches(".git").trim_end_matches('/');
+      let parts: Vec<&str> = cleaned.split('/').collect();
+      if parts.len() >= 2 {
+        return format!("{}/{}", parts[parts.len() - 2], parts[parts.len() - 1]);
+      }
+      return cleaned.to_string();
+    }
+  }
+
+  if let Some(after_scheme) = trimmed.split("://").nth(1) {
+    let cleaned = after_scheme.trim_end_matches('/');
+    let parts: Vec<&str> = cleaned.split('/').collect();
+    if parts.len() >= 3 {
+      let owner = parts[parts.len() - 2];
+      let repo = parts[parts.len() - 1].trim_end_matches(".git");
+      return format!("{}/{}", owner, repo);
+    }
+  }
+
+  trimmed.to_string()
+}
+
+fn is_valid_repo_url(url: &str) -> bool {
+  let value = url.trim();
+  value.starts_with("https://") || value.starts_with("http://") || value.starts_with("git@")
 }
 
 pub fn find_skills_repo_path() -> Option<PathBuf> {
@@ -725,6 +780,59 @@ pub fn fetch_marketplace_skills() -> Result<Vec<MarketplaceSkill>, String> {
 
   info!("Marketplace fetch completed with {} skills", marketplace_skills.len());
   Ok(marketplace_skills)
+}
+
+pub fn add_skills_repo(url: String) -> Result<AddRepoResult, String> {
+  let trimmed = url.trim();
+  if trimmed.is_empty() {
+    return Err("Repository URL is required".to_string());
+  }
+  if !is_valid_repo_url(trimmed) {
+    return Err("Invalid repository URL".to_string());
+  }
+
+  let config_path = find_skills_repo_path()
+    .ok_or_else(|| "skills_repo.json not found".to_string())?;
+
+  let content = fs::read_to_string(&config_path)
+    .map_err(|e| format!("Failed to read {:?}: {}", config_path, e))?;
+  let mut repo_list: RepoList = serde_json::from_str(&content)
+    .map_err(|e| format!("Failed to parse {:?}: {}", config_path, e))?;
+
+  let normalized = normalize_repo_url(trimmed);
+  if repo_list.repositories.iter().any(|repo| normalize_repo_url(&repo.url) == normalized) {
+    return Err("Repository already exists".to_string());
+  }
+
+  let discovered = discover_remote_repo(trimmed.to_string())
+    .map_err(|e| format!("Failed to read repository: {}", e))?;
+  if discovered.is_empty() {
+    return Err("No skills found in repository".to_string());
+  }
+
+  let repo_name = repo_name_from_url(trimmed);
+  repo_list.repositories.push(RepoConfig {
+    name: repo_name.clone(),
+    url: trimmed.to_string(),
+    description: "User added repo".to_string(),
+  });
+
+  let updated = serde_json::to_string_pretty(&repo_list)
+    .map_err(|e| format!("Failed to serialize skills_repo.json: {}", e))?;
+  fs::write(&config_path, updated)
+    .map_err(|e| format!("Failed to write skills_repo.json: {}", e))?;
+
+  let skills = fetch_marketplace_skills()?;
+  let total_skills = skills.len();
+  let total_repos = repo_list.repositories.len();
+
+  Ok(AddRepoResult {
+    skills,
+    added_repo: repo_name,
+    added_skills: discovered.len(),
+    total_skills,
+    total_repos,
+  })
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
