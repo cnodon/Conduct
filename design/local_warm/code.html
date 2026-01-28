@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Conduct Skills Manager</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#195de6",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#0f1115","glass-border": "rgba(255, 255, 255, 0.08)",
+                        "glass-bg": "rgba(30, 35, 45, 0.4)",
+                        "surface-dark": "#181b21",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "md": "0.375rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.1); 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.1); 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255,255,255,0.2); 
+        }
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+        }.token-key { color: #f87171; }.token-string { color: #a5b4fc; }.token-value { color: #34d399; }.token-comment { color: #6b7280; font-style: italic; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200 font-body relative min-h-screen overflow-hidden">
+<div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+<div class="absolute bottom-[-10%] left-[-5%] w-[600px] h-[600px] rounded-full bg-orange-500/5 blur-[100px]"></div>
+<div class="absolute top-[-10%] right-[-5%] w-[700px] h-[700px] rounded-full bg-primary/10 blur-[120px]"></div>
+<div class="absolute top-[40%] left-[30%] w-[400px] h-[400px] rounded-full bg-pink-500/5 blur-[80px]"></div>
+</div>
+<div class="flex h-screen w-full">
+<input checked="" class="peer hidden" id="sidebar-toggle" type="checkbox"/>
+<aside class="flex-none z-40 bg-[#0f1115] border-r border-glass-border flex flex-col justify-between transition-[width] duration-300 ease-[cubic-bezier(0.25,0.8,0.25,1)] w-[70px] peer-checked:w-64 relative overflow-hidden group">
+<div>
+<div class="h-[74px] flex items-center px-[19px] border-b border-glass-border whitespace-nowrap overflow-hidden">
+<div class="flex items-center gap-3">
+<div class="size-8 text-primary bg-primary/20 rounded-lg flex-none flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">hub</span>
+</div>
+<h1 class="text-white text-xl font-display font-bold tracking-tight opacity-0 peer-checked:opacity-100 transition-opacity duration-300 delay-100">Conduct</h1>
+</div>
+</div>
+<nav class="flex flex-col gap-2 p-3 mt-2">
+<a class="flex items-center h-10 px-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors whitespace-nowrap overflow-hidden group/item" href="#">
+<span class="material-symbols-outlined text-[22px] min-w-[24px]">dashboard</span>
+<span class="ml-3 text-sm font-medium opacity-0 peer-checked:opacity-100 transition-opacity duration-300 delay-75">Dashboard</span>
+</a>
+<a class="flex items-center h-10 px-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors whitespace-nowrap overflow-hidden group/item" href="#">
+<span class="material-symbols-outlined text-[22px] min-w-[24px]">storefront</span>
+<span class="ml-3 text-sm font-medium opacity-0 peer-checked:opacity-100 transition-opacity duration-300 delay-75">Marketplace</span>
+</a>
+<a class="flex items-center h-10 px-2.5 rounded-lg bg-primary/10 text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] border border-primary/20 transition-colors whitespace-nowrap overflow-hidden group/item" href="#">
+<span class="material-symbols-outlined text-[22px] min-w-[24px] text-primary">deployed_code</span>
+<span class="ml-3 text-sm font-medium opacity-0 peer-checked:opacity-100 transition-opacity duration-300 delay-75">Installed</span>
+</a>
+<a class="flex items-center h-10 px-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors whitespace-nowrap overflow-hidden group/item" href="#">
+<span class="material-symbols-outlined text-[22px] min-w-[24px]">tune</span>
+<span class="ml-3 text-sm font-medium opacity-0 peer-checked:opacity-100 transition-opacity duration-300 delay-75">Configuration</span>
+</a>
+<a class="flex items-center h-10 px-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors whitespace-nowrap overflow-hidden group/item" href="#">
+<span class="material-symbols-outlined text-[22px] min-w-[24px]">settings</span>
+<span class="ml-3 text-sm font-medium opacity-0 peer-checked:opacity-100 transition-opacity duration-300 delay-75">Settings</span>
+</a>
+</nav>
+</div>
+<div class="p-3 border-t border-glass-border">
+<label class="flex items-center h-10 px-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 cursor-pointer transition-colors whitespace-nowrap overflow-hidden select-none" for="sidebar-toggle">
+<span class="material-symbols-outlined text-[22px] min-w-[24px] transition-transform duration-300 peer-checked:rotate-180">chevron_right</span>
+<span class="ml-3 text-sm font-medium opacity-0 peer-checked:opacity-100 transition-opacity duration-300">Collapse</span>
+</label>
+</div>
+</aside>
+<div class="flex-1 flex flex-col h-full overflow-hidden relative">
+<header class="flex-none px-6 py-4 border-b border-glass-border bg-background-dark/80 backdrop-blur-md sticky top-0 z-30">
+<div class="max-w-[1600px] mx-auto flex items-center justify-between gap-8">
+<div class="flex items-center gap-4">
+<h2 class="text-white text-lg font-display font-medium md:hidden">Conduct</h2>
+<div class="hidden md:flex bg-surface-dark/50 p-1 rounded-lg border border-glass-border">
+<button class="px-4 py-1.5 rounded bg-primary/20 text-white text-sm font-medium shadow-sm transition-all border border-primary/30">Claude Code</button>
+<button class="px-4 py-1.5 rounded hover:bg-white/5 text-slate-400 hover:text-white text-sm font-medium transition-colors">Codex</button>
+<button class="px-4 py-1.5 rounded hover:bg-white/5 text-slate-400 hover:text-white text-sm font-medium transition-colors">Gemini</button>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-primary transition-colors text-[20px]">search</span>
+<input class="bg-surface-dark border border-glass-border rounded-full pl-10 pr-4 py-2 text-sm text-white focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary w-64 placeholder:text-slate-600 transition-all" placeholder="Search skills..." type="text"/>
+</div>
+<div class="size-9 rounded-full bg-gradient-to-tr from-orange-400 to-pink-500 border-2 border-surface-dark bg-cover bg-center shadow-lg cursor-pointer hover:ring-2 hover:ring-primary/50 transition-all" data-alt="User avatar with warm gradient" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCnY8H9msD6RmbGcCaCD0oEkBhOzIbY8LlvrQjqvriapMcsiZc-I0TCeThxHoBgEbv7-IxuN8FV_woPCBVF0ByZKpjOFqDRAYt7ogu-1dERZSrhpVMI64tO4Zcnu2ds5nM48JIwrBbqjTuLclkGglWnpea9I-DzcIkTiSNdwU8iGAKQY7Sex2u0T1Dpq-D3ANtWfz9e2Rm3QnobepGQ0sVXZN8KpBg0IBDoSoRm1wdWNEJQLb9hZgZZtO7tuD8DFGaPyTkS2DN-3Rs')"></div>
+</div>
+</div>
+</header>
+<div class="flex-none px-6 py-6 pb-2">
+<div class="max-w-[1600px] mx-auto">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="glass-panel p-4 rounded-xl relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-blue-500/50"></div>
+<div class="flex justify-between items-start">
+<div>
+<p class="text-slate-400 text-xs font-medium uppercase tracking-wider mb-1">Total Skills</p>
+<p class="text-white text-2xl font-display font-bold">124</p>
+</div>
+<span class="material-symbols-outlined text-blue-500/40 bg-blue-500/10 p-2 rounded-lg">dataset</span>
+</div>
+</div>
+<div class="glass-panel p-4 rounded-xl relative overflow-hidden group">
+<div class="absolute inset-0 bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="absolute top-0 left-0 w-1 h-full bg-emerald-500/50"></div>
+<div class="flex justify-between items-start relative z-10">
+<div>
+<p class="text-slate-400 text-xs font-medium uppercase tracking-wider mb-1">Correct</p>
+<p class="text-white text-2xl font-display font-bold">110</p>
+</div>
+<span class="material-symbols-outlined text-emerald-500/40 bg-emerald-500/10 p-2 rounded-lg">check_circle</span>
+</div>
+<div class="absolute -bottom-6 -right-6 w-20 h-20 bg-emerald-500/20 blur-[40px] rounded-full"></div>
+</div>
+<div class="glass-panel p-4 rounded-xl relative overflow-hidden group">
+<div class="absolute inset-0 bg-amber-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="absolute top-0 left-0 w-1 h-full bg-amber-500/50"></div>
+<div class="flex justify-between items-start relative z-10">
+<div>
+<p class="text-slate-400 text-xs font-medium uppercase tracking-wider mb-1">Warning</p>
+<p class="text-white text-2xl font-display font-bold">12</p>
+</div>
+<span class="material-symbols-outlined text-amber-500/40 bg-amber-500/10 p-2 rounded-lg">warning</span>
+</div>
+<div class="absolute -bottom-6 -right-6 w-20 h-20 bg-amber-500/20 blur-[40px] rounded-full"></div>
+</div>
+<div class="glass-panel p-4 rounded-xl relative overflow-hidden group">
+<div class="absolute inset-0 bg-rose-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="absolute top-0 left-0 w-1 h-full bg-rose-500/50"></div>
+<div class="flex justify-between items-start relative z-10">
+<div>
+<p class="text-slate-400 text-xs font-medium uppercase tracking-wider mb-1">Error</p>
+<p class="text-white text-2xl font-display font-bold">2</p>
+</div>
+<span class="material-symbols-outlined text-rose-500/40 bg-rose-500/10 p-2 rounded-lg">error</span>
+</div>
+<div class="absolute -bottom-6 -right-6 w-20 h-20 bg-rose-500/20 blur-[40px] rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<main class="flex-1 overflow-hidden px-6 py-6">
+<div class="max-w-[1600px] mx-auto h-full flex gap-6">
+<aside class="w-80 flex-none flex flex-col gap-4">
+<div class="flex items-center justify-between px-2">
+<h2 class="text-white font-display font-bold text-lg">Skills Tree</h2>
+<div class="flex gap-2">
+<button class="text-slate-400 hover:text-white transition-colors"><span class="material-symbols-outlined text-[20px]">expand_all</span></button>
+<button class="text-slate-400 hover:text-white transition-colors"><span class="material-symbols-outlined text-[20px]">filter_list</span></button>
+</div>
+</div>
+<div class="glass-panel flex-1 rounded-xl p-3 overflow-y-auto">
+<div class="mb-2">
+<details class="group" open="">
+<summary class="flex items-center gap-2 p-2 hover:bg-white/5 rounded-lg cursor-pointer text-slate-300 select-none">
+<span class="material-symbols-outlined text-[18px] text-slate-500 group-open:rotate-90 transition-transform">arrow_forward_ios</span>
+<span class="material-symbols-outlined text-[20px] text-primary">folder</span>
+<span class="text-sm font-medium">project-alpha</span>
+</summary>
+<div class="pl-4 mt-1 border-l border-white/5 ml-3 flex flex-col gap-1">
+<details class="group/nested" open="">
+<summary class="flex items-center gap-2 p-1.5 hover:bg-white/5 rounded-lg cursor-pointer text-slate-400 select-none">
+<span class="material-symbols-outlined text-[16px] text-slate-600 group-open/nested:rotate-90 transition-transform">arrow_forward_ios</span>
+<span class="material-symbols-outlined text-[18px] text-indigo-400">folder_open</span>
+<span class="text-sm">coding-assistant</span>
+</summary>
+<div class="pl-4 mt-1 border-l border-white/5 ml-2.5 flex flex-col gap-1">
+<div class="flex items-center justify-between p-2 bg-primary/20 border border-primary/20 rounded-md cursor-pointer group/file">
+<div class="flex items-center gap-2 overflow-hidden">
+<span class="material-symbols-outlined text-[18px] text-emerald-400">description</span>
+<span class="text-sm text-white font-medium truncate">refactor.yaml</span>
+</div>
+<div class="size-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+</div>
+<div class="flex items-center justify-between p-2 hover:bg-white/5 rounded-md cursor-pointer group/file transition-colors">
+<div class="flex items-center gap-2 overflow-hidden">
+<span class="material-symbols-outlined text-[18px] text-slate-500 group-hover/file:text-slate-300">description</span>
+<span class="text-sm text-slate-400 group-hover/file:text-slate-200 truncate">debug-tools.yaml</span>
+</div>
+<div class="size-2 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.5)]"></div>
+</div>
+<div class="flex items-center justify-between p-2 hover:bg-white/5 rounded-md cursor-pointer group/file transition-colors">
+<div class="flex items-center gap-2 overflow-hidden">
+<span class="material-symbols-outlined text-[18px] text-slate-500 group-hover/file:text-slate-300">description</span>
+<span class="text-sm text-slate-400 group-hover/file:text-slate-200 truncate">formatter.yaml</span>
+</div>
+<div class="size-2 rounded-full bg-emerald-500/30"></div>
+</div>
+</div>
+</details>
+<details class="group/nested">
+<summary class="flex items-center gap-2 p-1.5 hover:bg-white/5 rounded-lg cursor-pointer text-slate-400 select-none">
+<span class="material-symbols-outlined text-[16px] text-slate-600 group-open/nested:rotate-90 transition-transform">arrow_forward_ios</span>
+<span class="material-symbols-outlined text-[18px] text-slate-500">folder</span>
+<span class="text-sm">personal-utils</span>
+</summary>
+</details>
+</div>
+</details>
+</div>
+<div class="mb-2">
+<details class="group">
+<summary class="flex items-center gap-2 p-2 hover:bg-white/5 rounded-lg cursor-pointer text-slate-300 select-none">
+<span class="material-symbols-outlined text-[18px] text-slate-500 group-open:rotate-90 transition-transform">arrow_forward_ios</span>
+<span class="material-symbols-outlined text-[20px] text-slate-500">folder</span>
+<span class="text-sm font-medium">shared-libraries</span>
+</summary>
+</details>
+</div>
+</div>
+</aside>
+<section class="flex-1 flex flex-col gap-4 min-w-0">
+<div class="glass-panel p-6 rounded-xl flex flex-col gap-6">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 text-slate-500 text-xs font-mono mb-1">
+<span>project-alpha</span>
+<span>/</span>
+<span>coding-assistant</span>
+<span>/</span>
+</div>
+<div class="flex items-center gap-3">
+<h2 class="text-2xl md:text-3xl font-display font-bold text-white tracking-tight">Refactor-v2</h2>
+<span class="px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold uppercase tracking-wide flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+                                        Verified
+                                    </span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2 rounded-md bg-surface-dark border border-glass-border hover:border-slate-600 text-slate-300 hover:text-white transition-all text-sm font-medium">
+<span class="material-symbols-outlined text-[18px]">folder_open</span>
+                                    Reveal
+                                </button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-md bg-surface-dark border border-glass-border hover:border-slate-600 text-slate-300 hover:text-white transition-all text-sm font-medium">
+<span class="material-symbols-outlined text-[18px]">open_in_new</span>
+                                    Open
+                                </button>
+<button class="flex items-center gap-2 px-5 py-2 rounded-md bg-primary hover:bg-blue-600 text-white shadow-lg shadow-blue-500/20 transition-all text-sm font-medium group">
+<span class="material-symbols-outlined text-[18px] group-hover:scale-110 transition-transform">play_arrow</span>
+                                    Verify Skill
+                                </button>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 border-t border-glass-border">
+<div class="flex flex-col gap-1">
+<span class="text-slate-500 text-xs uppercase font-medium">Author</span>
+<div class="flex items-center gap-2">
+<div class="size-5 rounded-full bg-slate-700" data-alt="Author avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDNtMUoriJHLj4V1h4fRSzofngaZj24Pi2sOwlwdT26dvG5Qg2HrvjChCwE7qefk-TKTTOSDMV7fYl-112Uk3bUyDEhv7q4CN5g9N9SrNwj-qvdVHZrH6JeZjGSAr2-ZtN-SPLhyEPm16k-Mj7Bdg6YdHUAAV6MOvuTmuUP2I2M3ZPoLr9rzT3uNutAcV88iSmiww3utzvpQwLvXGEmgGCJmh_aNtVIN6-y_CWt1aPef2z-4E5DfNpE_hKfJDKvogYQBS8fzU-_zNA'); background-size: cover;"></div>
+<span class="text-slate-200 text-sm">Dev Team A</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-slate-500 text-xs uppercase font-medium">Version</span>
+<span class="text-slate-200 text-sm font-mono">2.1.0</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-slate-500 text-xs uppercase font-medium">Created</span>
+<span class="text-slate-200 text-sm">Oct 24, 2023</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-slate-500 text-xs uppercase font-medium">Dependencies</span>
+<span class="text-slate-200 text-sm">3 Modules</span>
+</div>
+</div>
+</div>
+<div class="glass-panel flex-1 rounded-xl flex flex-col min-h-0 overflow-hidden relative">
+<div class="flex items-center justify-between px-4 py-3 bg-black/20 border-b border-glass-border">
+<span class="text-slate-400 text-xs font-mono uppercase tracking-wider">Configuration Source</span>
+<div class="flex gap-2">
+<span class="size-3 rounded-full bg-slate-700"></span>
+<span class="size-3 rounded-full bg-slate-700"></span>
+</div>
+</div>
+<div class="overflow-auto flex-1 p-6 bg-[#0a0c10] font-mono text-sm leading-relaxed">
+<pre><code><span class="token-comment"># Skill Configuration: Refactor V2</span>
+<span class="token-comment"># Optimized for Claude Code agents</span>
+<span class="token-key">name:</span> <span class="token-string">"CodeRefactor"</span>
+<span class="token-key">version:</span> <span class="token-value">2.1.0</span>
+<span class="token-key">description:</span> <span class="token-string">"Automated refactoring based on clean code principles"</span>
+<span class="token-key">inputs:</span>
+  <span class="token-key">source_path:</span>
+    <span class="token-key">type:</span> <span class="token-string">string</span>
+    <span class="token-key">required:</span> <span class="token-value">true</span>
+    <span class="token-key">description:</span> <span class="token-string">"Path to the directory or file to refactor"</span>
+  <span class="token-key">style_guide:</span>
+    <span class="token-key">type:</span> <span class="token-string">string</span>
+    <span class="token-key">default:</span> <span class="token-string">"airbnb"</span>
+    <span class="token-key">options:</span> <span class="token-value">[ "airbnb", "google", "standard" ]</span>
+<span class="token-key">execution:</span>
+  <span class="token-key">timeout:</span> <span class="token-value">300s</span>
+  <span class="token-key">memory:</span> <span class="token-string">"2GB"</span>
+  <span class="token-key">retry_policy:</span>
+    <span class="token-key">max_attempts:</span> <span class="token-value">3</span>
+    <span class="token-key">backoff:</span> <span class="token-string">"exponential"</span>
+<span class="token-key">permissions:</span>
+  <span class="token-value">- read:filesystem</span>
+  <span class="token-value">- write:filesystem</span>
+<span class="token-comment"># End of configuration</span></code></pre>
+</div>
+<div class="absolute bottom-0 right-0 w-64 h-64 bg-primary/5 blur-[80px] pointer-events-none"></div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</div>
+
+</body></html>

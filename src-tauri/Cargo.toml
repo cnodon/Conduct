@@ -1,0 +1,30 @@
+[package]
+name = "conduct"
+version = "1.0.0"
+description = "Conduct - Skills Manager"
+authors = ["Conduct Team"]
+edition = "2021"
+
+[build-dependencies]
+tauri-build = { version = "1.5", features = [] }
+
+[dependencies]
+tauri = { version = "1.5", features = ["system-tray"] }
+tauri-plugin-log = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v1" }
+log = "0.4"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+serde_yaml = "0.9"
+regex = "1.10"
+glob = "0.3"
+open = "5.0"
+dirs = "5.0"
+pathdiff = "0.2"
+md5 = "0.7"
+
+[features]
+default = ["custom-protocol"]
+custom-protocol = ["tauri/custom-protocol"]
+
+[profile.release]
+panic = "abort"

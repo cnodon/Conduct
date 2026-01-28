@@ -1,0 +1,19 @@
+{
+    "repositories": [
+        {
+            "name": "anthropics/skills",
+            "url": "https://github.com/anthropics/skills.git",
+            "description": "Official collection of skills by Anthropic"
+        },
+        {
+            "name": "obra/superpowers",
+            "url": "https://github.com/obra/superpowers.git",
+            "description": "Superpowers: website builder and editor"
+        },
+        {
+            "name": "composiohq/awesome-claude-skills",
+            "url": "https://github.com/composiohq/awesome-claude-skills.git",
+            "description": "Curated list of Claude skills"
+        }
+    ]
+}

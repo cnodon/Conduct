@@ -1,0 +1,46 @@
+{
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build",
+    "devPath": "http://localhost:1420",
+    "distDir": "../dist/gui",
+    "withGlobalTauri": false
+  },
+  "package": {
+    "productName": "Conduct",
+    "version": "1.0.0+20260128-1750"
+  },
+  "tauri": {
+    "windows": [
+      {
+        "title": "Conduct",
+        "width": 1200,
+        "height": 800,
+        "minWidth": 900,
+        "minHeight": 600,
+        "resizable": true
+      }
+    ],
+    "allowlist": {
+      "all": false
+    },
+    "security": {
+      "csp": null
+    },
+    "bundle": {
+      "active": true,
+      "identifier": "com.conduct.app",
+      "icon": [
+        "icons/icon.png",
+        "icons/icon.ico",
+        "icons/icon.icns"
+      ],
+      "resources": [
+        "../skills_repo.json"
+      ]
+    },
+    "systemTray": {
+      "iconPath": "icons/icon.png"
+    }
+  }
+}

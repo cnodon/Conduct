@@ -1,0 +1,69 @@
+{
+  "name": "conduct",
+  "version": "1.0.0",
+  "description": "Claude Code Skills 配置扫描和管理工具",
+  "main": "dist/cli/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "version:build": "node scripts/write-version.mjs",
+    "build:cli": "tsc",
+    "build:ui": "vite build",
+    "build": "npm run version:build && npm run build:cli && npm run build:ui",
+    "preview": "vite preview",
+    "dev:tauri": "tauri dev",
+    "build:tauri": "tauri build",
+    "cli": "tsx src/cli/index.ts",
+    "scan": "tsx src/cli/index.ts scan",
+    "gui": "tauri dev",
+    "test": "vitest",
+    "lint": "eslint src --ext .ts,.tsx",
+    "format": "prettier --write \"src/**/*.{ts,tsx}\""
+  },
+  "bin": {
+    "conduct": "./dist/cli/index.js"
+  },
+  "keywords": [
+    "claude-code",
+    "skills",
+    "diagnostics",
+    "configuration"
+  ],
+  "author": "Conduct Team",
+  "license": "MIT",
+  "dependencies": {
+    "@tauri-apps/api": "^1.5.0",
+    "chalk": "^5.3.0",
+    "chokidar": "^3.6.0",
+    "commander": "^11.1.0",
+    "glob": "^10.3.10",
+    "js-yaml": "^4.1.0",
+    "ora": "^8.0.1",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^20.11.5",
+    "@types/react": "^18.2.48",
+    "@types/react-dom": "^18.2.18",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "@tauri-apps/cli": "^1.5.10",
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.11",
+    "vitest": "^1.2.1",
+    "antd": "^5.12.8",
+    "recharts": "^2.10.3",
+    "react-syntax-highlighter": "^15.5.0",
+    "zustand": "^4.5.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

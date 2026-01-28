@@ -1,0 +1,177 @@
+<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="1200" height="800" fill="#f5f5f5"/>
+
+  <!-- 标题栏 -->
+  <rect x="0" y="0" width="1200" height="60" fill="#1890ff"/>
+  <text x="20" y="38" font-family="Arial, sans-serif" font-size="24" fill="white" font-weight="bold">
+    Conduct - Claude Code Skills Manager
+  </text>
+
+  <!-- 统计面板 -->
+  <rect x="20" y="80" width="1160" height="120" fill="white" stroke="#d9d9d9" stroke-width="1" rx="4"/>
+  <text x="40" y="110" font-family="Arial, sans-serif" font-size="16" fill="#262626" font-weight="bold">
+    📊 统计概览
+  </text>
+
+  <!-- 统计卡片 1: 总计 -->
+  <rect x="40" y="125" width="270" height="60" fill="#e6f7ff" stroke="#91d5ff" stroke-width="1" rx="4"/>
+  <text x="60" y="150" font-family="Arial, sans-serif" font-size="14" fill="#0050b3">总计 Skills</text>
+  <text x="60" y="175" font-family="Arial, sans-serif" font-size="28" fill="#0050b3" font-weight="bold">40</text>
+
+  <!-- 统计卡片 2: 配置正确 -->
+  <rect x="330" y="125" width="270" height="60" fill="#f6ffed" stroke="#b7eb8f" stroke-width="1" rx="4"/>
+  <text x="350" y="150" font-family="Arial, sans-serif" font-size="14" fill="#389e0d">✅ 配置正确</text>
+  <text x="350" y="175" font-family="Arial, sans-serif" font-size="28" fill="#389e0d" font-weight="bold">35</text>
+
+  <!-- 统计卡片 3: 警告 -->
+  <rect x="620" y="125" width="270" height="60" fill="#fffbe6" stroke="#ffe58f" stroke-width="1" rx="4"/>
+  <text x="640" y="150" font-family="Arial, sans-serif" font-size="14" fill="#d46b08">⚠️ 警告</text>
+  <text x="640" y="175" font-family="Arial, sans-serif" font-size="28" fill="#d46b08" font-weight="bold">3</text>
+
+  <!-- 统计卡片 4: 错误 -->
+  <rect x="910" y="125" width="270" height="60" fill="#fff2e8" stroke="#ffbb96" stroke-width="1" rx="4"/>
+  <text x="930" y="150" font-family="Arial, sans-serif" font-size="14" fill="#d4380d">❌ 错误</text>
+  <text x="930" y="175" font-family="Arial, sans-serif" font-size="28" fill="#d4380d" font-weight="bold">2</text>
+
+  <!-- 主内容区域边框 -->
+  <rect x="20" y="220" width="1160" height="560" fill="white" stroke="#d9d9d9" stroke-width="1" rx="4"/>
+
+  <!-- 左侧 Skills 树 -->
+  <rect x="20" y="220" width="580" height="560" fill="white" stroke="#d9d9d9" stroke-width="1" rx="4"/>
+  <text x="40" y="250" font-family="Arial, sans-serif" font-size="16" fill="#262626" font-weight="bold">
+    Skills 层级结构
+  </text>
+
+  <!-- 个人全局 Skills 区域 -->
+  <rect x="40" y="270" width="540" height="140" fill="#fafafa" stroke="#d9d9d9" stroke-width="1" rx="4"/>
+  <text x="55" y="295" font-family="Arial, sans-serif" font-size="14" fill="#262626" font-weight="bold">
+    🌐 个人全局 Skills (~/.claude/skills/)
+  </text>
+
+  <!-- Skill 项目示例 -->
+  <g transform="translate(70, 310)">
+    <circle cx="8" cy="8" r="6" fill="#52c41a"/>
+    <text x="20" y="13" font-family="Arial, sans-serif" font-size="13" fill="#262626">✅ commit-formatter</text>
+  </g>
+  <g transform="translate(70, 335)">
+    <circle cx="8" cy="8" r="6" fill="#52c41a"/>
+    <text x="20" y="13" font-family="Arial, sans-serif" font-size="13" fill="#262626">✅ code-reviewer</text>
+  </g>
+  <g transform="translate(70, 360)">
+    <circle cx="8" cy="8" r="6" fill="#faad14"/>
+    <text x="20" y="13" font-family="Arial, sans-serif" font-size="13" fill="#262626">⚠️ debugging-helper (有警告)</text>
+  </g>
+  <g transform="translate(70, 385)">
+    <circle cx="8" cy="8" r="6" fill="#ff4d4f"/>
+    <text x="20" y="13" font-family="Arial, sans-serif" font-size="13" fill="#262626">❌ test-generator (配置错误)</text>
+  </g>
+
+  <!-- 项目级 Skills 区域 -->
+  <rect x="40" y="425" width="540" height="340" fill="#fafafa" stroke="#d9d9d9" stroke-width="1" rx="4"/>
+  <text x="55" y="450" font-family="Arial, sans-serif" font-size="14" fill="#262626" font-weight="bold">
+    📁 项目级 Skills (.claude/skills/)
+  </text>
+
+  <!-- 项目根 Skills -->
+  <g transform="translate(70, 465)">
+    <circle cx="8" cy="8" r="6" fill="#52c41a"/>
+    <text x="20" y="13" font-family="Arial, sans-serif" font-size="13" fill="#262626">✅ api-documentation</text>
+  </g>
+  <g transform="translate(70, 490)">
+    <circle cx="8" cy="8" r="6" fill="#52c41a"/>
+    <text x="20" y="13" font-family="Arial, sans-serif" font-size="13" fill="#262626">✅ database-query</text>
+  </g>
+
+  <!-- 嵌套目录标题 -->
+  <text x="70" y="530" font-family="Arial, sans-serif" font-size="13" fill="#595959" font-weight="bold">
+    📂 嵌套目录 Skills:
+  </text>
+
+  <!-- 嵌套目录 1: frontend -->
+  <rect x="70" y="540" width="490" height="90" fill="#f0f0f0" stroke="#d9d9d9" stroke-width="1" rx="3"/>
+  <text x="85" y="560" font-family="Arial, sans-serif" font-size="12" fill="#595959">
+    📂 packages/frontend/.claude/skills/
+  </text>
+  <g transform="translate(100, 575)">
+    <circle cx="6" cy="6" r="5" fill="#52c41a"/>
+    <text x="16" y="11" font-family="Arial, sans-serif" font-size="12" fill="#262626">✅ component-generator</text>
+  </g>
+  <g transform="translate(100, 600)">
+    <circle cx="6" cy="6" r="5" fill="#52c41a"/>
+    <text x="16" y="11" font-family="Arial, sans-serif" font-size="12" fill="#262626">✅ react-hooks-helper</text>
+  </g>
+
+  <!-- 嵌套目录 2: backend -->
+  <rect x="70" y="640" width="490" height="70" fill="#f0f0f0" stroke="#d9d9d9" stroke-width="1" rx="3"/>
+  <text x="85" y="660" font-family="Arial, sans-serif" font-size="12" fill="#595959">
+    📂 packages/backend/.claude/skills/
+  </text>
+  <g transform="translate(100, 675)">
+    <circle cx="6" cy="6" r="5" fill="#52c41a"/>
+    <text x="16" y="11" font-family="Arial, sans-serif" font-size="12" fill="#262626">✅ api-endpoint-template</text>
+  </g>
+
+  <!-- 右侧详情面板 -->
+  <rect x="620" y="220" width="560" height="560" fill="white" stroke="#d9d9d9" stroke-width="1" rx="4"/>
+  <text x="640" y="250" font-family="Arial, sans-serif" font-size="16" fill="#262626" font-weight="bold">
+    详情面板
+  </text>
+
+  <!-- 详情面板占位提示 -->
+  <text x="640" y="280" font-family="Arial, sans-serif" font-size="13" fill="#8c8c8c">
+    请从左侧选择一个 Skill 查看详情
+  </text>
+
+  <!-- 详情卡片示例 -->
+  <rect x="640" y="300" width="520" height="100" fill="#fafafa" stroke="#d9d9d9" stroke-width="1" rx="4"/>
+  <text x="655" y="325" font-family="Arial, sans-serif" font-size="14" fill="#262626" font-weight="bold">
+    基本信息
+  </text>
+  <text x="655" y="350" font-family="Arial, sans-serif" font-size="12" fill="#595959">
+    名称: commit-formatter
+  </text>
+  <text x="655" y="370" font-family="Arial, sans-serif" font-size="12" fill="#595959">
+    描述: 生成规范的 Git commit 消息
+  </text>
+  <text x="655" y="390" font-family="Arial, sans-serif" font-size="12" fill="#595959">
+    路径: ~/.claude/skills/commit-formatter
+  </text>
+
+  <!-- 元数据卡片 -->
+  <rect x="640" y="415" width="520" height="80" fill="#fafafa" stroke="#d9d9d9" stroke-width="1" rx="4"/>
+  <text x="655" y="440" font-family="Arial, sans-serif" font-size="14" fill="#262626" font-weight="bold">
+    元数据配置
+  </text>
+  <text x="655" y="465" font-family="Arial, sans-serif" font-size="12" fill="#595959">
+    allowed-tools: Read, Grep, Bash
+  </text>
+  <text x="655" y="485" font-family="Arial, sans-serif" font-size="12" fill="#595959">
+    user-invocable: true
+  </text>
+
+  <!-- 验证结果卡片 -->
+  <rect x="640" y="510" width="520" height="60" fill="#f6ffed" stroke="#b7eb8f" stroke-width="1" rx="4"/>
+  <text x="655" y="535" font-family="Arial, sans-serif" font-size="14" fill="#389e0d" font-weight="bold">
+    ✅ 验证结果
+  </text>
+  <text x="655" y="555" font-family="Arial, sans-serif" font-size="12" fill="#52c41a">
+    配置有效，无错误或警告
+  </text>
+
+  <!-- 操作按钮区域 -->
+  <rect x="640" y="585" width="160" height="36" fill="#1890ff" stroke="#1890ff" stroke-width="1" rx="4"/>
+  <text x="675" y="608" font-family="Arial, sans-serif" font-size="13" fill="white" font-weight="bold">
+    在编辑器中打开
+  </text>
+
+  <rect x="820" y="585" width="160" height="36" fill="white" stroke="#d9d9d9" stroke-width="1" rx="4"/>
+  <text x="840" y="608" font-family="Arial, sans-serif" font-size="13" fill="#262626" font-weight="bold">
+    在文件管理器显示
+  </text>
+
+  <rect x="1000" y="585" width="160" height="36" fill="white" stroke="#d9d9d9" stroke-width="1" rx="4"/>
+  <text x="1040" y="608" font-family="Arial, sans-serif" font-size="13" fill="#262626" font-weight="bold">
+    重新验证
+  </text>
+</svg>
