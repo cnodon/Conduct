@@ -1,11 +1,11 @@
 {
-  "version": "0.8.6",
-  "notes": "- 更新提示增加跳转下载与下载安装\n- 更新文案精简为“发现新版本：vX.Y.Z”",
-  "pub_date": "2026-01-30T12:57:31Z",
+  "version": "0.8.7",
+  "notes": "- 主界面布局优化（Tabs 与刷新按钮留白）\n- 侧栏图标支持直达 GitHub",
+  "pub_date": "2026-01-30T13:16:34Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVURmttaE9udXplS1YrNVRkNHZGZWw1aXZYUkNPNXJlR3U4eWc1ZXdqNkV5ZW50SWNiM013OWpDbk9RUWhGOTBaMFcxNlBoTTR0eXBacmFIdnhab2JZdmJYUUJlZjBqelFNPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzY5Nzc3ODExCWZpbGU6Q29uZHVjdC5hcHAudGFyLmd6ClZHUklQazZHMWorL3hYQ3lwL0hCZ29idXJHRHM0VlJHdVE1ajVZLzJDMkxESWRSb1dmaHpsQnltUGc1N2JGcXBQR0ppTEo4Uis3TEZJUmtGZUZZQ0RnPT0K",
-      "url": "https://github.com/cnodon/Conduct/releases/download/v0.8.6/Conduct.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVURmttaE9udXplS1ZCMGlFdnA0bGRrSzRkRm82aW96OHhYR0VxdDI3REZidlF5R1Jrd2Nrb1FwYUtNb1hRUHdDaTViQk9MeFpEanArOVFZaFFTc3JoeU40TW1RMFkraVFjPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzY5Nzc4OTc3CWZpbGU6Q29uZHVjdC5hcHAudGFyLmd6CjJCWGl0MnlaOFB3UGFZSVliOE5EeWwwRkFKV09UKzdyNnZXeFl1RWlJeGs5L3VqMzhlSFNwUVh4SmcxZ25zSzQvVVFuOXFCQWQ3VWVFb29IUUp5TkFRPT0K",
+      "url": "https://github.com/cnodon/Conduct/releases/download/v0.8.7/Conduct.app.tar.gz"
     }
   }
 }
