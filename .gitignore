@@ -45,3 +45,6 @@ coverage/
 
 # Marketplace cache
 skills_list.json
+
+# Tauri signing keys
+src-tauri/keys/tauri_private.key

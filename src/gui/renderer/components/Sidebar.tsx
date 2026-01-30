@@ -1,4 +1,5 @@
 import React from 'react';
+import { open } from '@tauri-apps/api/shell';
 import { useI18n } from '../i18n/useI18n';
 
 type TabId = 'local' | 'marketplace' | 'settings';
@@ -10,6 +11,7 @@ interface SidebarProps {
 
 export const Sidebar: React.FC<SidebarProps> = ({ activeView, onChangeView }) => {
   const { strings } = useI18n();
+  const githubUrl = 'https://github.com/cnodon/Conduct';
 
   const getIcon = (view: TabId) => {
     switch (view) {
@@ -58,15 +60,25 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeView, onChangeView }) =>
       zIndex: 60
     }}>
       <div style={{ marginBottom: '24px' }}>
-        <div style={{
-          width: '40px', height: '40px',
-          color: 'var(--primary)',
-          background: 'rgba(25, 93, 230, 0.1)',
-          borderRadius: '10px',
-          display: 'flex', alignItems: 'center', justifyContent: 'center'
-        }}>
+        <button
+          type="button"
+          onClick={() => open(githubUrl)}
+          title="GitHub"
+          style={{
+            width: '40px', height: '40px',
+            color: 'var(--primary)',
+            background: 'rgba(25, 93, 230, 0.1)',
+            borderRadius: '10px',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            border: '1px solid transparent',
+            cursor: 'pointer',
+            transition: 'all 0.2s'
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.border = '1px solid rgba(25, 93, 230, 0.3)')}
+          onMouseLeave={(e) => (e.currentTarget.style.border = '1px solid transparent')}
+        >
           <span className="material-symbols-outlined">hub</span>
-        </div>
+        </button>
       </div>
 
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', width: '100%', alignItems: 'center' }}>

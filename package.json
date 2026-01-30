@@ -1,6 +1,6 @@
 {
   "name": "conduct",
-  "version": "1.0.0",
+  "version": "0.8.8",
   "description": "Claude Code Skills 配置扫描和管理工具",
   "main": "dist/cli/index.js",
   "type": "module",

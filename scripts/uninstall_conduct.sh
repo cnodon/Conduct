@@ -29,6 +29,10 @@ done
 paths=(
   "/Applications/Conduct.app"
   "$HOME/Applications/Conduct.app"
+  # DMG mounts (best-effort; these are handled separately below)
+  "/Volumes/Conduct.app"
+  "/Volumes/Conduct 1/Conduct.app"
+  "/Volumes/Conduct 2/Conduct.app"
   "$HOME/Library/Logs/Conduct"
   "$HOME/Library/Logs/com.conduct.app"
   "$HOME/.Conduct/skills_repo.json"
@@ -37,6 +41,8 @@ paths=(
   "$HOME/Library/Caches/Conduct"
   "$HOME/Library/Preferences/com.conduct.app.plist"
   "$HOME/Library/Saved Application State/com.conduct.app.savedState"
+  # Common local build outputs (dev machines)
+  "$HOME/Develop/TokenLabs/app/Conduct/src-tauri/target/release/bundle/macos/Conduct.app"
 )
 
 if [ "$FORCE" -ne 1 ]; then
@@ -68,6 +74,18 @@ rm_path() {
 
 for p in "${paths[@]}"; do
   rm_path "$p"
+done
+
+# Detach any mounted DMG volumes named Conduct*
+for vol in /Volumes/Conduct*; do
+  if [ -d "$vol" ]; then
+    if [ "$DRYRUN" -eq 1 ]; then
+      echo "Would detach: $vol"
+    else
+      hdiutil detach "$vol" >/dev/null 2>&1 || true
+      echo "Detached: $vol"
+    fi
+  fi
 done
 
 if [ "$DRYRUN" -eq 1 ]; then

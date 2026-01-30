@@ -30,6 +30,7 @@ export const Header: React.FC<HeaderProps> = ({
       borderBottom: '1px solid var(--glass-border)',
       background: 'rgba(15, 17, 21, 0.8)',
       backdropFilter: 'blur(12px)',
+      padding: '16px 40px',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
@@ -42,6 +43,7 @@ export const Header: React.FC<HeaderProps> = ({
         padding: '4px',
         borderRadius: '8px',
         border: '1px solid var(--glass-border)',
+        marginLeft: '8px'
       }}>
         {(['claude', 'codex', 'gemini'] as const).map((tab) => {
           const isActive = activeTab === tab;
@@ -74,7 +76,7 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
 
       {/* Right Actions */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginRight: '8px' }}>
         {/* Search - Visual only for now */}
         <div style={{ position: 'relative', display: 'none' }}>
           <span className="material-symbols-outlined" style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: '#64748b', fontSize: '18px' }}>search</span>

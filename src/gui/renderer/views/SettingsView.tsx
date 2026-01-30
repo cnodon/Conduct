@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { invoke } from '@tauri-apps/api/tauri';
+import { open } from '@tauri-apps/api/shell';
 import { useI18n } from '../i18n/useI18n';
 import { useSkillsStore } from '../store/useSkillsStore';
+import { useUpdateStore } from '../store/useUpdateStore';
 import versionInfo from '../version.json';
 
 const SettingSection: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => (
@@ -48,16 +50,31 @@ const Select: React.FC<{ options: { value: string; label: string }[]; value: str
   </select>
 );
 
-const Switch: React.FC<{ checked?: boolean }> = ({ checked }) => (
-  <div style={{
-    width: '40px',
-    height: '24px',
-    background: checked ? 'var(--primary)' : 'rgba(255,255,255,0.1)',
-    borderRadius: '999px',
-    position: 'relative',
-    cursor: 'pointer',
-    transition: 'background 0.2s'
-  }}>
+const Switch: React.FC<{ checked?: boolean; onToggle?: () => void; disabled?: boolean }> = ({ checked, onToggle, disabled }) => (
+  <div
+    role="button"
+    tabIndex={0}
+    onClick={() => {
+      if (!disabled) onToggle?.();
+    }}
+    onKeyDown={(event) => {
+      if (disabled) return;
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        onToggle?.();
+      }
+    }}
+    style={{
+      width: '40px',
+      height: '24px',
+      background: checked ? 'var(--primary)' : 'rgba(255,255,255,0.1)',
+      borderRadius: '999px',
+      position: 'relative',
+      cursor: disabled ? 'not-allowed' : 'pointer',
+      transition: 'background 0.2s',
+      opacity: disabled ? 0.6 : 1
+    }}
+  >
     <div style={{
       width: '18px',
       height: '18px',
@@ -75,11 +92,28 @@ const Switch: React.FC<{ checked?: boolean }> = ({ checked }) => (
 export const SettingsView: React.FC = () => {
   const { strings, language, setLanguage } = useI18n();
   const { refreshTreeLabels } = useSkillsStore();
+  const releasePageUrl = 'https://github.com/cnodon/Conduct/releases/latest';
+  const {
+    autoCheckEnabled,
+    setAutoCheckEnabled,
+    status: updateStatus,
+    latestVersion,
+    releaseNotes,
+    lastCheckedAt,
+    downloadProgress,
+    error: updateError,
+    checkForUpdates,
+    installUpdateNow,
+  } = useUpdateStore();
   const [skillsRepoPath, setSkillsRepoPath] = useState(strings.settings.skillsRepoLabel);
-  const [appVersion, setAppVersion] = useState<string>(versionInfo?.build ?? versionInfo?.base ?? '0.0.0');
+  const formatDisplayVersion = (info?: { base?: string; build?: string; timestamp?: string }) => {
+    const base = info?.base ?? info?.build ?? '0.0.0';
+    const date = info?.timestamp ? info.timestamp.split('-')[0] : null;
+    return date ? `${base}-${date}` : base;
+  };
+  const [appVersion, setAppVersion] = useState<string>(formatDisplayVersion(versionInfo));
   const [marketplaceCount, setMarketplaceCount] = useState<number | null>(null);
   const [openError, setOpenError] = useState<string | null>(null);
-
   useEffect(() => {
     let mounted = true;
 
@@ -109,8 +143,48 @@ export const SettingsView: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    setAppVersion(versionInfo?.build ?? versionInfo?.base ?? '0.0.0');
+    setAppVersion(formatDisplayVersion(versionInfo));
   }, [language]);
+
+  const updateStatusText = (() => {
+    const statusMessage = (() => {
+      switch (updateStatus) {
+        case 'checking':
+          return strings.settings.updateChecking;
+        case 'up-to-date':
+          return strings.settings.updateUpToDate;
+        case 'update-available':
+          return strings.settings.updateAvailable(latestVersion ?? '');
+        case 'installing':
+          return downloadProgress !== null
+            ? strings.settings.updateDownloading(String(downloadProgress))
+            : strings.settings.updateInstalling;
+        case 'error':
+          return updateError ? `${strings.settings.updateError} (${updateError})` : strings.settings.updateError;
+        default:
+          return '';
+      }
+    })();
+    const checkedMessage = (() => {
+      if (!lastCheckedAt) return '';
+      const date = new Date(lastCheckedAt);
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      return strings.settings.updateLastChecked(`${year}/${month}`);
+    })();
+    return [statusMessage, checkedMessage].filter(Boolean).join(' · ');
+  })();
+  const isInstalling = updateStatus === 'installing';
+  const showInstallButton = updateStatus === 'update-available' || updateStatus === 'installing';
+  const showReleaseNotes = !!releaseNotes && (updateStatus === 'update-available' || updateStatus === 'installing');
+
+  const handleCheckUpdates = async () => {
+    await checkForUpdates();
+  };
+
+  const handleOpenReleasePage = async () => {
+    await open(releasePageUrl);
+  };
 
   const handleOpenSkillsRepo = async () => {
     setOpenError(null);
@@ -242,20 +316,125 @@ export const SettingsView: React.FC = () => {
 
       <SettingSection title={strings.settings.preferences}>
         <SettingItem 
-          label={strings.settings.autoRefresh} 
-          description={strings.settings.autoRefreshDescription}
-          control={<Switch checked={true} />} 
-        />
-        <SettingItem 
-          label={strings.settings.notifications} 
-          description={strings.settings.notificationsDescription}
-          control={<Switch checked={false} />} 
+          label={strings.settings.updates} 
+          description={updateStatusText}
+          control={(
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#e2e8f0', fontSize: '12px' }}>
+                  <Switch
+                    checked={autoCheckEnabled}
+                    onToggle={() => setAutoCheckEnabled(!autoCheckEnabled)}
+                    disabled={updateStatus === 'checking'}
+                  />
+                  <span>{strings.settings.autoCheckUpdates}</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={handleCheckUpdates}
+                  disabled={updateStatus === 'checking' || isInstalling}
+                  style={{
+                    padding: '8px 14px',
+                    borderRadius: '999px',
+                    border: '1px solid rgba(148, 163, 184, 0.4)',
+                    background: 'rgba(15, 23, 42, 0.4)',
+                    color: '#e2e8f0',
+                    fontSize: '12px',
+                    fontWeight: 600,
+                    cursor: updateStatus === 'checking' || isInstalling ? 'not-allowed' : 'pointer',
+                    opacity: updateStatus === 'checking' || isInstalling ? 0.6 : 1
+                  }}
+                >
+                  {strings.settings.checkUpdatesButton}
+                </button>
+                {showInstallButton && (
+                  <>
+                    <button
+                      type="button"
+                      onClick={handleOpenReleasePage}
+                      disabled={isInstalling}
+                      style={{
+                        padding: '8px 14px',
+                        borderRadius: '999px',
+                        border: '1px solid rgba(148, 163, 184, 0.4)',
+                        background: 'rgba(15, 23, 42, 0.4)',
+                        color: '#e2e8f0',
+                        fontSize: '12px',
+                        fontWeight: 600,
+                        cursor: isInstalling ? 'not-allowed' : 'pointer',
+                        opacity: isInstalling ? 0.6 : 1
+                      }}
+                    >
+                      {strings.settings.updateDownloadPageButton}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={installUpdateNow}
+                      disabled={isInstalling}
+                      style={{
+                        padding: '8px 14px',
+                        borderRadius: '999px',
+                        border: '1px solid rgba(148, 163, 184, 0.4)',
+                        background: 'rgba(30, 41, 59, 0.6)',
+                        color: '#e2e8f0',
+                        fontSize: '12px',
+                        fontWeight: 600,
+                        cursor: isInstalling ? 'not-allowed' : 'pointer',
+                        opacity: isInstalling ? 0.6 : 1
+                      }}
+                    >
+                      {strings.settings.updateInstallButton}
+                    </button>
+                  </>
+                )}
+              </div>
+              {isInstalling && downloadProgress !== null && (
+                <div style={{ minWidth: '200px' }}>
+                  <div style={{
+                    height: '6px',
+                    borderRadius: '999px',
+                    background: 'rgba(148, 163, 184, 0.2)',
+                    overflow: 'hidden'
+                  }}>
+                    <div style={{
+                      width: `${downloadProgress}%`,
+                      height: '100%',
+                      background: 'var(--primary)',
+                      transition: 'width 0.2s ease'
+                    }} />
+                  </div>
+                  <div style={{ marginTop: '6px', color: '#94a3b8', fontSize: '11px' }}>
+                    {strings.settings.updateDownloading(String(downloadProgress))}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
           last
         />
+        {showReleaseNotes && (
+          <div style={{ padding: '0 20px 16px' }}>
+            <div style={{ color: '#cbd5f5', fontSize: '12px', fontWeight: 600, marginBottom: '8px' }}>
+              {strings.settings.updateReleaseNotesTitle}
+            </div>
+            <div style={{
+              whiteSpace: 'pre-wrap',
+              color: '#94a3b8',
+              fontSize: '12px',
+              lineHeight: 1.6,
+              padding: '12px',
+              borderRadius: '10px',
+              border: '1px solid rgba(148, 163, 184, 0.2)',
+              background: 'rgba(15, 23, 42, 0.4)'
+            }}>
+              {releaseNotes}
+            </div>
+          </div>
+        )}
       </SettingSection>
 
       <div style={{ marginTop: '48px', borderTop: '1px solid var(--glass-border)', paddingTop: '24px', color: '#64748b', fontSize: '12px' }}>
-        <p>{strings.settings.versionLine} {appVersion}</p>
+        <p>{strings.settings.versionLine}{appVersion}</p>
         <p style={{ marginTop: '4px' }}>{strings.settings.copyright}</p>
       </div>
     </div>

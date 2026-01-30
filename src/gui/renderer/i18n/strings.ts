@@ -93,10 +93,22 @@ type StringsShape = {
     geminiPathDescription: string;
     geminiPathPlaceholder: string;
     preferences: string;
-    autoRefresh: string;
-    autoRefreshDescription: string;
-    notifications: string;
-    notificationsDescription: string;
+    checkUpdates: string;
+    checkUpdatesDescription: string;
+    checkUpdatesButton: string;
+    updates: string;
+    updatesDescription: string;
+    autoCheckUpdates: string;
+    updateChecking: string;
+    updateUpToDate: string;
+    updateAvailable: NamedText;
+    updateInstalling: string;
+    updateDownloading: NamedText;
+    updateError: string;
+    updateLastChecked: NamedText;
+    updateInstallButton: string;
+    updateDownloadPageButton: string;
+    updateReleaseNotesTitle: string;
     marketplace: string;
     skillsRepoLabel: string;
     skillsRepoDescription: string;
@@ -292,10 +304,22 @@ export const STRINGS: Record<Language, StringsShape> = {
       geminiPathDescription: 'Custom root directory for Gemini skills',
       geminiPathPlaceholder: '~/.gemini/skills',
       preferences: 'Preferences',
-      autoRefresh: 'Auto-refresh on focus',
-      autoRefreshDescription: 'Refresh skills list when window gains focus',
-      notifications: 'Notifications',
-      notificationsDescription: 'Show system notifications for skill updates',
+      checkUpdates: 'Check for Updates',
+      checkUpdatesDescription: 'Manually check for a newer version',
+      checkUpdatesButton: 'Check',
+      updates: 'Updates',
+      updatesDescription: 'Manual check or enable auto-check on launch',
+      autoCheckUpdates: 'Auto-check on launch',
+      updateChecking: 'Checking for updates...',
+      updateUpToDate: 'You are up to date',
+      updateAvailable: (version) => `New version: v${version}`,
+      updateInstalling: 'Installing update...',
+      updateDownloading: (progress) => `Downloading ${progress}%`,
+      updateError: 'Update check failed',
+      updateLastChecked: (time) => `Last checked: ${time}`,
+      updateInstallButton: 'Install',
+      updateDownloadPageButton: 'Release Page',
+      updateReleaseNotesTitle: 'Release notes',
       marketplace: 'Marketplace',
       skillsRepoLabel: 'skills_repo.json',
       skillsRepoDescription: 'Marketplace repository list (read-only path)',
@@ -304,8 +328,8 @@ export const STRINGS: Record<Language, StringsShape> = {
       marketplaceSkillsLabel: 'Marketplace Skills',
       marketplaceSkillsDescription: 'Current marketplace skill count (cached)',
       loading: 'Loading',
-      versionLine: 'Conduct v1.0.0',
-      copyright: '© 2026 Conduct Team. MIT License.',
+      versionLine: 'Conduct v',
+      copyright: '© 2026 TokenLabs. MIT License.',
     },
     errors: {
       unknown: 'Unknown error',
@@ -489,10 +513,22 @@ export const STRINGS: Record<Language, StringsShape> = {
       geminiPathDescription: 'Gemini 技能的自定义根目录',
       geminiPathPlaceholder: '~/.gemini/skills',
       preferences: '偏好设置',
-      autoRefresh: '聚焦自动刷新',
-      autoRefreshDescription: '窗口获得焦点时刷新技能列表',
-      notifications: '通知',
-      notificationsDescription: '显示技能更新的系统通知',
+      checkUpdates: '检查更新',
+      checkUpdatesDescription: '手动检查是否有新版本',
+      checkUpdatesButton: '检查',
+      updates: '更新',
+      updatesDescription: '手动检查或在启动时自动检查',
+      autoCheckUpdates: '启动时自动检查',
+      updateChecking: '正在检查更新...',
+      updateUpToDate: '已是最新版本',
+      updateAvailable: (version) => `发现新版本：v${version}`,
+      updateInstalling: '正在安装更新...',
+      updateDownloading: (progress) => `下载中 ${progress}%`,
+      updateError: '更新检查失败',
+      updateLastChecked: (time) => `上次检查：${time}`,
+      updateInstallButton: '下载安装',
+      updateDownloadPageButton: '跳转下载',
+      updateReleaseNotesTitle: '更新内容',
       marketplace: '市场',
       skillsRepoLabel: 'skills_repo.json',
       skillsRepoDescription: '市场仓库列表（只读路径）',
@@ -501,8 +537,8 @@ export const STRINGS: Record<Language, StringsShape> = {
       marketplaceSkillsLabel: '市场技能数量',
       marketplaceSkillsDescription: '当前缓存的市场技能数量',
       loading: '加载中',
-      versionLine: 'Conduct v1.0.0',
-      copyright: '© 2026 Conduct Team. MIT License.',
+      versionLine: 'Conduct v',
+      copyright: '© 2026 TokenLabs. MIT License.',
     },
     errors: {
       unknown: '未知错误',

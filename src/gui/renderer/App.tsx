@@ -1,13 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Sidebar } from './components/Sidebar';
 import { LocalView } from './views/LocalView';
 import { MarketplaceView } from './views/MarketplaceView';
 import { SettingsView } from './views/SettingsView';
+import { useUpdateStore } from './store/useUpdateStore';
 
 type ViewId = 'local' | 'marketplace' | 'settings';
 
 export const App: React.FC = () => {
   const [activeView, setActiveView] = useState<ViewId>('local');
+  const autoCheckEnabled = useUpdateStore((state) => state.autoCheckEnabled);
+  const checkForUpdates = useUpdateStore((state) => state.checkForUpdates);
+
+  useEffect(() => {
+    if (!autoCheckEnabled) return;
+    void checkForUpdates();
+  }, [autoCheckEnabled, checkForUpdates]);
 
   return (
     <div style={{ display: 'flex', height: '100vh', width: '100vw', background: 'var(--bg-dark)', color: 'var(--text-primary)', overflow: 'hidden' }}>

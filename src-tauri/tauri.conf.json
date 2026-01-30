@@ -8,7 +8,7 @@
   },
   "package": {
     "productName": "Conduct",
-    "version": "1.0.0+20260129-0028"
+    "version": "0.8.8"
   },
   "tauri": {
     "windows": [
@@ -22,7 +22,21 @@
       }
     ],
     "allowlist": {
-      "all": false
+      "all": false,
+      "shell": {
+        "open": true
+      },
+      "process": {
+        "relaunch": true
+      }
+    },
+    "updater": {
+      "active": true,
+      "endpoints": [
+        "https://raw.githubusercontent.com/cnodon/Conduct/main/latest.json"
+      ],
+      "dialog": false,
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDI5REVFQzlFNEU2ODkyQzUKUldURmttaE9udXplS1lSRkp0MlpFTnFTVGNRd0ozNENtdHRZN0xDcXRJS0QyeU5hSXV3OU9IR1YK"
     },
     "security": {
       "csp": null
@@ -35,6 +49,10 @@
         "icons/icon.ico",
         "icons/icon.icns"
       ],
+      "macOS": {
+        "signingIdentity": "Developer ID Application: DONG YUAN (9ZF5W6983F)",
+        "providerShortName": "9ZF5W6983F"
+      },
       "resources": [
         "../skills_repo.json"
       ]

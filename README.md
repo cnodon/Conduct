@@ -9,6 +9,9 @@
 - **安装与管理**：支持从 Git 安装，且可将本地技能一键安装到其他 CLI。
 - **市场聚合**：基于 `skills_repo.json` 聚合仓库，缓存加速并支持浏览安装。
 - **市场体验优化**：同步状态可视化、骨架加载、分页进度展示、手动更新（缓存为空时自动拉取一次）、新增 Repo。
+- **更新与版本检查**：设置页支持手动检查更新与启动时自动检查，可跳转 Release 下载或一键下载安装，并展示 Release Notes 与下载进度。
+- **界面优化**：顶部导航留白更均衡，左侧栏图标支持直达 GitHub 项目页。
+- **Settings 功能清单**：详见 `settings.md`（便于产品与测试对齐）。
 
 ## 安装
 
@@ -73,7 +76,8 @@ npm run gui
 
 ## 版本号与编译时间
 - 构建脚本 `npm run version:build` 在打包前执行。
-- 版本格式：`<base>+YYYYMMDD-HHMM`，其中 base 来自 `BASE_VERSION` 环境变量（默认 `1.0.0`）。
+- 应用版本采用 SemVer（`MAJOR.MINOR.PATCH`），默认读取 `package.json` 的 `version`（可用 `BASE_VERSION` 覆盖）。
+- 编译时间戳会写入 `version.json` 的 `build` 字段，便于定位构建。
 - 编译时间戳与版本写入位置详见 `impl.md`。
 
 ## 运行日志
@@ -94,6 +98,9 @@ npm run gui
 - Marketplace PRD：`prd_marketplace.md`
 - 产品需求文档：`prd.md`
 - 日志 PRD：`prd_log.md`
+- 设计资产：`design/app-icon.svg`
+- 启动统计服务（可选）：`telemetry_server/README.md`
+- 本地模拟统计服务：`server/localserver.md`
 
 ## 开发
 

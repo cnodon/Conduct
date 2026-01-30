@@ -1,0 +1,170 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="rgbGradient" x1="252" y1="252" x2="772" y2="772" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="rgb(255, 80, 80)" />
+      <stop offset="45%" stop-color="rgb(80, 255, 160)" />
+      <stop offset="100%" stop-color="rgb(80, 140, 255)" />
+    </linearGradient>
+    <radialGradient id="sphereHighlight" cx="35%" cy="28%" r="55%">
+      <stop offset="0%" stop-color="rgba(255, 255, 255, 0.32)" />
+      <stop offset="40%" stop-color="rgba(255, 255, 255, 0.12)" />
+      <stop offset="100%" stop-color="rgba(255, 255, 255, 0)" />
+    </radialGradient>
+    <radialGradient id="sphereShade" cx="68%" cy="78%" r="60%">
+      <stop offset="0%" stop-color="rgba(0, 0, 0, 0)" />
+      <stop offset="65%" stop-color="rgba(0, 0, 0, 0.18)" />
+      <stop offset="100%" stop-color="rgba(0, 0, 0, 0.36)" />
+    </radialGradient>
+    <clipPath id="sphereClip">
+      <circle cx="512" cy="512" r="280" />
+    </clipPath>
+  </defs>
+
+  <rect width="1024" height="1024" rx="220" fill="#0c0a09" />
+  <ellipse cx="512" cy="820" rx="260" ry="46" fill="rgba(0, 0, 0, 0.35)" />
+
+  <!-- Dot sphere -->
+  <g transform="translate(512 512) scale(1.08) translate(-512 -512)">
+    <g fill="url(#rgbGradient)">
+    <circle cx="512.0" cy="252.0" r="7.4" />
+    <circle cx="378.1" cy="289.1" r="10.6" />
+    <circle cx="431.6" cy="289.1" r="10.6" />
+    <circle cx="485.2" cy="289.1" r="10.6" />
+    <circle cx="538.8" cy="289.1" r="10.6" />
+    <circle cx="592.4" cy="289.1" r="10.6" />
+    <circle cx="645.9" cy="289.1" r="10.6" />
+    <circle cx="330.0" cy="326.3" r="11.7" />
+    <circle cx="375.5" cy="326.3" r="11.7" />
+    <circle cx="421.0" cy="326.3" r="11.7" />
+    <circle cx="466.5" cy="326.3" r="11.7" />
+    <circle cx="512.0" cy="326.3" r="11.7" />
+    <circle cx="557.5" cy="326.3" r="11.7" />
+    <circle cx="603.0" cy="326.3" r="11.7" />
+    <circle cx="648.5" cy="326.3" r="11.7" />
+    <circle cx="694.0" cy="326.3" r="11.7" />
+    <circle cx="298.6" cy="363.4" r="12.4" />
+    <circle cx="346.0" cy="363.4" r="12.4" />
+    <circle cx="393.5" cy="363.4" r="12.4" />
+    <circle cx="440.9" cy="363.4" r="12.4" />
+    <circle cx="488.3" cy="363.4" r="12.4" />
+    <circle cx="535.7" cy="363.4" r="12.4" />
+    <circle cx="583.1" cy="363.4" r="12.4" />
+    <circle cx="630.5" cy="363.4" r="12.4" />
+    <circle cx="678.0" cy="363.4" r="12.4" />
+    <circle cx="725.4" cy="363.4" r="12.4" />
+    <circle cx="277.1" cy="400.6" r="12.9" />
+    <circle cx="324.1" cy="400.6" r="12.9" />
+    <circle cx="371.1" cy="400.6" r="12.9" />
+    <circle cx="418.0" cy="400.6" r="12.9" />
+    <circle cx="465.0" cy="400.6" r="12.9" />
+    <circle cx="512.0" cy="400.6" r="12.9" />
+    <circle cx="559.0" cy="400.6" r="12.9" />
+    <circle cx="606.0" cy="400.6" r="12.9" />
+    <circle cx="652.9" cy="400.6" r="12.9" />
+    <circle cx="699.9" cy="400.6" r="12.9" />
+    <circle cx="746.9" cy="400.6" r="12.9" />
+    <circle cx="262.8" cy="437.7" r="13.2" />
+    <circle cx="308.1" cy="437.7" r="13.2" />
+    <circle cx="353.4" cy="437.7" r="13.2" />
+    <circle cx="398.7" cy="437.7" r="13.2" />
+    <circle cx="444.0" cy="437.7" r="13.2" />
+    <circle cx="489.3" cy="437.7" r="13.2" />
+    <circle cx="534.7" cy="437.7" r="13.2" />
+    <circle cx="580.0" cy="437.7" r="13.2" />
+    <circle cx="625.3" cy="437.7" r="13.2" />
+    <circle cx="670.6" cy="437.7" r="13.2" />
+    <circle cx="715.9" cy="437.7" r="13.2" />
+    <circle cx="761.2" cy="437.7" r="13.2" />
+    <circle cx="257.0" cy="474.9" r="13.4" />
+    <circle cx="303.4" cy="474.9" r="13.4" />
+    <circle cx="349.7" cy="474.9" r="13.4" />
+    <circle cx="396.1" cy="474.9" r="13.4" />
+    <circle cx="442.5" cy="474.9" r="13.4" />
+    <circle cx="488.8" cy="474.9" r="13.4" />
+    <circle cx="535.2" cy="474.9" r="13.4" />
+    <circle cx="581.5" cy="474.9" r="13.4" />
+    <circle cx="627.9" cy="474.9" r="13.4" />
+    <circle cx="674.3" cy="474.9" r="13.4" />
+    <circle cx="720.6" cy="474.9" r="13.4" />
+    <circle cx="767.0" cy="474.9" r="13.4" />
+    <circle cx="257.0" cy="512.0" r="13.5" />
+    <circle cx="299.5" cy="512.0" r="13.5" />
+    <circle cx="342.0" cy="512.0" r="13.5" />
+    <circle cx="384.5" cy="512.0" r="13.5" />
+    <circle cx="427.0" cy="512.0" r="13.5" />
+    <circle cx="469.5" cy="512.0" r="13.5" />
+    <circle cx="512.0" cy="512.0" r="13.5" />
+    <circle cx="554.5" cy="512.0" r="13.5" />
+    <circle cx="597.0" cy="512.0" r="13.5" />
+    <circle cx="639.5" cy="512.0" r="13.5" />
+    <circle cx="682.0" cy="512.0" r="13.5" />
+    <circle cx="724.5" cy="512.0" r="13.5" />
+    <circle cx="767.0" cy="512.0" r="13.5" />
+    <circle cx="257.0" cy="549.1" r="13.4" />
+    <circle cx="303.4" cy="549.1" r="13.4" />
+    <circle cx="349.7" cy="549.1" r="13.4" />
+    <circle cx="396.1" cy="549.1" r="13.4" />
+    <circle cx="442.5" cy="549.1" r="13.4" />
+    <circle cx="488.8" cy="549.1" r="13.4" />
+    <circle cx="535.2" cy="549.1" r="13.4" />
+    <circle cx="581.5" cy="549.1" r="13.4" />
+    <circle cx="627.9" cy="549.1" r="13.4" />
+    <circle cx="674.3" cy="549.1" r="13.4" />
+    <circle cx="720.6" cy="549.1" r="13.4" />
+    <circle cx="767.0" cy="549.1" r="13.4" />
+    <circle cx="262.8" cy="586.3" r="13.2" />
+    <circle cx="308.1" cy="586.3" r="13.2" />
+    <circle cx="353.4" cy="586.3" r="13.2" />
+    <circle cx="398.7" cy="586.3" r="13.2" />
+    <circle cx="444.0" cy="586.3" r="13.2" />
+    <circle cx="489.3" cy="586.3" r="13.2" />
+    <circle cx="534.7" cy="586.3" r="13.2" />
+    <circle cx="580.0" cy="586.3" r="13.2" />
+    <circle cx="625.3" cy="586.3" r="13.2" />
+    <circle cx="670.6" cy="586.3" r="13.2" />
+    <circle cx="715.9" cy="586.3" r="13.2" />
+    <circle cx="761.2" cy="586.3" r="13.2" />
+    <circle cx="277.1" cy="623.4" r="12.9" />
+    <circle cx="324.1" cy="623.4" r="12.9" />
+    <circle cx="371.1" cy="623.4" r="12.9" />
+    <circle cx="418.0" cy="623.4" r="12.9" />
+    <circle cx="465.0" cy="623.4" r="12.9" />
+    <circle cx="512.0" cy="623.4" r="12.9" />
+    <circle cx="559.0" cy="623.4" r="12.9" />
+    <circle cx="606.0" cy="623.4" r="12.9" />
+    <circle cx="652.9" cy="623.4" r="12.9" />
+    <circle cx="699.9" cy="623.4" r="12.9" />
+    <circle cx="746.9" cy="623.4" r="12.9" />
+    <circle cx="298.6" cy="660.6" r="12.4" />
+    <circle cx="346.0" cy="660.6" r="12.4" />
+    <circle cx="393.5" cy="660.6" r="12.4" />
+    <circle cx="440.9" cy="660.6" r="12.4" />
+    <circle cx="488.3" cy="660.6" r="12.4" />
+    <circle cx="535.7" cy="660.6" r="12.4" />
+    <circle cx="583.1" cy="660.6" r="12.4" />
+    <circle cx="630.5" cy="660.6" r="12.4" />
+    <circle cx="678.0" cy="660.6" r="12.4" />
+    <circle cx="725.4" cy="660.6" r="12.4" />
+    <circle cx="330.0" cy="697.7" r="11.7" />
+    <circle cx="375.5" cy="697.7" r="11.7" />
+    <circle cx="421.0" cy="697.7" r="11.7" />
+    <circle cx="466.5" cy="697.7" r="11.7" />
+    <circle cx="512.0" cy="697.7" r="11.7" />
+    <circle cx="557.5" cy="697.7" r="11.7" />
+    <circle cx="603.0" cy="697.7" r="11.7" />
+    <circle cx="648.5" cy="697.7" r="11.7" />
+    <circle cx="694.0" cy="697.7" r="11.7" />
+    <circle cx="378.1" cy="734.9" r="10.6" />
+    <circle cx="431.6" cy="734.9" r="10.6" />
+    <circle cx="485.2" cy="734.9" r="10.6" />
+    <circle cx="538.8" cy="734.9" r="10.6" />
+    <circle cx="592.4" cy="734.9" r="10.6" />
+    <circle cx="645.9" cy="734.9" r="10.6" />
+    <circle cx="512.0" cy="772.0" r="7.4" />
+    </g>
+    <g clip-path="url(#sphereClip)">
+      <circle cx="512" cy="512" r="280" fill="url(#sphereHighlight)" />
+      <circle cx="512" cy="512" r="280" fill="url(#sphereShade)" />
+    </g>
+  </g>
+</svg>
