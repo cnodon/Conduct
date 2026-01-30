@@ -4,6 +4,7 @@ import { LocalView } from './views/LocalView';
 import { MarketplaceView } from './views/MarketplaceView';
 import { SettingsView } from './views/SettingsView';
 import { useUpdateStore } from './store/useUpdateStore';
+import { reportLaunch } from './utils/telemetry';
 
 type ViewId = 'local' | 'marketplace' | 'settings';
 
@@ -16,6 +17,10 @@ export const App: React.FC = () => {
     if (!autoCheckEnabled) return;
     void checkForUpdates();
   }, [autoCheckEnabled, checkForUpdates]);
+
+  useEffect(() => {
+    void reportLaunch();
+  }, []);
 
   return (
     <div style={{ display: 'flex', height: '100vh', width: '100vw', background: 'var(--bg-dark)', color: 'var(--text-primary)', overflow: 'hidden' }}>

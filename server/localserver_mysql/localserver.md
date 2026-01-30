@@ -1,47 +1,48 @@
-# 本地模拟 PostgreSQL + Python（Conduct 启动统计服务）
+# 本地模拟 MySQL + Python（Conduct 启动统计服务）
 
-目标：在本地启动 PostgreSQL 与 FastAPI 服务，用于验证 `/api/events/launch` 上报流程。
+目标：在本地启动 MySQL 与 FastAPI 服务，用于验证 `/api/events/launch` 上报流程。
 
 ---
 
 ## 目录
-本地模拟目录：`/Users/ddmm/Develop/TokenLabs/app/Conduct/server`
+本地模拟目录：`/Users/ddmm/Develop/TokenLabs/app/Conduct/server/localserver_mysql`
 
 包含：
 - `app/`：FastAPI 后端代码
 - `requirements.txt`：Python 依赖
-- `schema.sql`：PostgreSQL 表结构
+- `schema.sql`：MySQL 表结构
 - `config/.env.example`：环境变量模板
 
 ---
 
-## 1) 准备 PostgreSQL
+## 1) 准备 MySQL
 
-### 方式 A：本机 PostgreSQL
+### 方式 A：本机 MySQL
 ```bash
-# 如果已安装 PostgreSQL，可跳过安装步骤
 # macOS 安装示例（Homebrew）
-brew install postgresql@15
-brew services start postgresql@15
+brew install mysql
+brew services start mysql
 
 # 创建数据库与用户
-psql postgres <<'SQL'
-CREATE USER conduct WITH PASSWORD 'conduct';
-CREATE DATABASE conduct OWNER conduct;
+mysql -u root <<'SQL'
+CREATE DATABASE conduct;
+CREATE USER 'conduct'@'localhost' IDENTIFIED BY 'conduct';
+GRANT ALL PRIVILEGES ON conduct.* TO 'conduct'@'localhost';
+FLUSH PRIVILEGES;
 SQL
 ```
 
 ### 方式 B：Docker（可选）
 ```bash
-docker run --name conduct-postgres -e POSTGRES_USER=conduct -e POSTGRES_PASSWORD=conduct -e POSTGRES_DB=conduct -p 5432:5432 -d postgres:15
+docker run --name conduct-mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=conduct -e MYSQL_USER=conduct -e MYSQL_PASSWORD=conduct -p 3306:3306 -d mysql:8
 ```
 
 ---
 
 ## 2) 初始化数据表
 ```bash
-cd /Users/ddmm/Develop/TokenLabs/app/Conduct/server
-psql "postgresql://conduct:conduct@127.0.0.1:5432/conduct" -f schema.sql
+cd /Users/ddmm/Develop/TokenLabs/app/Conduct/server/localserver_mysql
+mysql -u conduct -pconduct -h 127.0.0.1 -D conduct < schema.sql
 ```
 
 ---
@@ -82,7 +83,7 @@ curl -X POST http://127.0.0.1:8080/api/events/launch \
 
 ## 6) 验证数据是否写入
 ```bash
-psql "postgresql://conduct:conduct@127.0.0.1:5432/conduct" -c "SELECT app_version, platform, locale, client_date, received_at FROM app_launch_events ORDER BY received_at DESC LIMIT 5;"
+mysql -u conduct -pconduct -h 127.0.0.1 -D conduct -e "SELECT app_version, platform, locale, client_date, received_at FROM app_launch_events ORDER BY received_at DESC LIMIT 5;"
 ```
 
 ---

@@ -10,6 +10,7 @@
 - **市场聚合**：基于 `skills_repo.json` 聚合仓库，缓存加速并支持浏览安装。
 - **市场体验优化**：同步状态可视化、骨架加载、分页进度展示、手动更新（缓存为空时自动拉取一次）、新增 Repo。
 - **更新与版本检查**：设置页支持手动检查更新与启动时自动检查，可跳转 Release 下载或一键下载安装，并展示 Release Notes 与下载进度。
+- **启动统计（可选）**：应用每次启动上报一次启动事件（install_id / 版本 / 平台 / 系统版本 / 语言 / 时间戳），失败最多重试 3 次，服务端记录 IP，并写入运行日志便于排查。
 - **界面优化**：顶部导航留白更均衡，左侧栏图标支持直达 GitHub 项目页。
 - **Settings 功能清单**：详见 `settings.md`（便于产品与测试对齐）。
 
@@ -100,7 +101,8 @@ npm run gui
 - 日志 PRD：`prd_log.md`
 - 设计资产：`design/app-icon.svg`
 - 启动统计服务（可选）：`telemetry_server/README.md`
-- 本地模拟统计服务：`server/localserver.md`
+- 本地模拟统计服务（PostgreSQL）：`server/localserver_PostgreSQL/localserver.md`
+- 本地模拟统计服务（MySQL）：`server/localserver_mysql/localserver.md`
 
 ## 开发
 

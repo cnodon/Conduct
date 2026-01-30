@@ -29,7 +29,37 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build
+      - name: Import Apple Developer ID certificate
+        if: runner.os == 'macOS'
+        uses: apple-actions/import-codesign-certs@v2
+        with:
+          p12-file-base64: ${{ secrets.APPLE_DEV_ID_P12 }}
+          p12-password: ${{ secrets.APPLE_DEV_ID_P12_PASSWORD }}
+
+      - name: Write Tauri updater private key
+        if: runner.os == 'macOS'
+        env:
+          TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
+        run: |
+          python - <<'PY'
+          import base64, os, pathlib
+          data = base64.b64decode(os.environ["TAURI_PRIVATE_KEY"])
+          pathlib.Path("/tmp/tauri_private.key").write_bytes(data)
+          PY
+          chmod 600 /tmp/tauri_private.key
+
+      - name: Build (macOS)
+        if: runner.os == 'macOS'
+        env:
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          TAURI_PRIVATE_KEY: /tmp/tauri_private.key
+          TAURI_KEY_PASSWORD: ${{ secrets.TAURI_KEY_PASSWORD }}
+        run: npm run build:tauri -- --bundles dmg,updater
+
+      - name: Build (Windows)
+        if: runner.os == 'Windows'
         run: npm run build:tauri
 
       - name: Upload bundle
@@ -37,3 +67,15 @@ jobs:
         with:
           name: conduct-${{ matrix.os }}
           path: src-tauri/target/release/bundle
+
+      - name: Publish GitHub Release (macOS)
+        if: startsWith(github.ref, 'refs/tags/') && runner.os == 'macOS'
+        uses: softprops/action-gh-release@v2
+        with:
+          body_path: release_notes.md
+          files: |
+            src-tauri/target/release/bundle/dmg/*.dmg
+            src-tauri/target/release/bundle/macos/*.tar.gz
+            src-tauri/target/release/bundle/macos/*.sig
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

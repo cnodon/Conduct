@@ -102,3 +102,53 @@
 - **常见路径**：
   - macOS：`~/Library/Logs/Conduct/`
   - Windows：`%APPDATA%\\Conduct\\logs\\`
+
+## Conduct Client ↔ Tokenlabs.cn 通讯设计
+
+### 关键模块
+- **Telemetry Client**：负责生成 `install_id`、去重（每日一次）与上报。
+- **HTTP Transport**：通过 `HTTP POST` 发送 JSON 到 `tokenlabs.cn`。
+- **Telemetry API (FastAPI)**：接收事件、校验、写入数据库。
+- **PostgreSQL**：存储 `app_launch_events`，按日去重。
+- **GeoIP Resolver**（可选）：服务端基于 IP 解析地区信息。
+
+### 通讯策略
+- **触发时机**：用户打开应用后触发上报。
+- **频率控制**：每次启动上报一次（基于 session 标记），启动内防重。
+- **协议方式**：`HTTP POST`，JSON body。
+- **去重兜底**：服务端以 `(install_id, client_date)` 唯一索引保证日去重。
+- **失败处理**：请求失败不阻塞 UI，不重试（避免影响启动体验）。
+- **可配置端点**：客户端读取 `VITE_TELEMETRY_ENDPOINT`，默认 `https://tokenlabs.cn/api/events/launch`。
+ - **失败重试**：最多尝试 3 次，每次超时 3 秒，失败即放弃。
+
+### 通讯内容关键字段
+客户端上报（JSON Body）：
+- `install_id`：客户端生成的 UUID
+- `app_version`：应用版本号（SemVer）
+- `platform`：`macos / windows / linux`
+- `os_version`：系统版本
+- `locale`：语言区域（如 `zh-CN`）
+- `timestamp`：客户端时间（ISO 8601）
+
+服务端补充：
+- `ip`：由 Nginx/服务端读取请求来源
+- `geo`：根据 IP 解析（country/region/city）
+
+### 客户端实现要点
+- `install_id` 存储在 `localStorage`：`conduct.installId`。
+- 启动内防重：`sessionStorage` 标记 + `inFlight` 防止并发上报。
+- 使用 Tauri HTTP API 发送请求（避免 WebView 跨域限制）。
+- 上报流程与结果会写入 `runtime_log.md`（前缀 `telemetry`）。
+- 时间戳携带本地时区偏移，保证服务端按本地日期去重。
+
+### 通讯示意图（HTTP POST）
+```
+[Conduct Client] -- POST /api/events/launch --> [tokenlabs.cn Nginx]
+       |                                              |
+       | (JSON: install_id, version, platform, ...)    |
+       v                                              v
+  Local Dedup (daily)                         FastAPI Telemetry API
+                                                      |
+                                                      v
+                                               PostgreSQL (launch_events)
+```

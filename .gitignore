@@ -35,6 +35,11 @@ pnpm-debug.log*
 .env.local
 .env.*.local
 
+# Python virtualenv / cache
+__pycache__/
+server/**/venv/
+server/**/ptgsvenv/
+
 # Test coverage
 coverage/
 .nyc_output/

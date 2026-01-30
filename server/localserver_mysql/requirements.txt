@@ -1,0 +1,4 @@
+fastapi==0.115.6
+uvicorn==0.30.6
+mysql-connector-python==9.1.0
+geoip2==4.8.0

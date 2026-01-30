@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS app_launch_events (
+  id CHAR(36) PRIMARY KEY,
+  install_id CHAR(36) NOT NULL,
+  app_version VARCHAR(32) NOT NULL,
+  platform VARCHAR(32) NOT NULL,
+  os_version VARCHAR(64) NOT NULL,
+  locale VARCHAR(32) NOT NULL,
+  ip VARCHAR(45) NOT NULL,
+  geo_country VARCHAR(64),
+  geo_region VARCHAR(64),
+  geo_city VARCHAR(64),
+  client_timestamp DATETIME,
+  client_date DATE NOT NULL,
+  received_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE KEY uniq_launch_install_day (install_id, client_date),
+  KEY idx_launch_received_at (received_at),
+  KEY idx_launch_version (app_version),
+  KEY idx_launch_platform (platform),
+  KEY idx_launch_geo_country (geo_country)
+);

@@ -114,6 +114,11 @@ fn show_in_finder(path: String) -> Result<(), String> {
 }
 
 #[tauri::command]
+fn log_telemetry_event(message: String) {
+  log_runtime_event(&format!("telemetry {}", message));
+}
+
+#[tauri::command]
 fn get_skills_repo_path(app: tauri::AppHandle) -> Option<String> {
   if let Some(path) = find_skills_repo_path() {
     if let Ok(abs) = path.canonicalize() {
@@ -250,6 +255,7 @@ fn main() {
       read_marketplace_cache,
       get_skills_repo_path,
       install_local_skill,
+      log_telemetry_event,
       open_in_editor,
       show_in_finder
     ])
