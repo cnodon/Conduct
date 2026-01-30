@@ -1,17 +1,22 @@
 # Conduct
 
-Conduct 是一款面向 Claude Code / Codex / Gemini CLI 的 Skills 管理与诊断工具。它帮助你快速扫描本地技能配置、发现冲突、验证元数据，并在一个统一界面里完成浏览与安装。
+Conduct 是一款面向 Claude Code / Codex / Gemini CLI 的 Skills 图形化管理工具。
 
 ## 你可以用 Conduct 做什么
-- 统一查看多平台 Skills 的实际生效路径与层级
-- 识别缺失字段与潜在冲突，减少配置问题
-- 从 Marketplace 聚合仓库中浏览并安装技能
+### Skills 主界面
+- 查看多 CLI 的 Skills 实际生效路径与层级
+- 在不同 CLI 之间复刻技能
+
+### Skills Marketplace
+- 在官方 Skills 聚合仓库中浏览并安装技能
+- 添加你喜欢的 Skills Repo URL，自动解析并更新 Skills 列表
+
+### 更新
 - 在设置页快速检查版本更新
 
 ## 开箱即用（macOS）
 1. 从 GitHub Releases 下载最新的 `.dmg` 文件。
-2. 打开 DMG，将 Conduct 拖入 Applications。
-3. 首次打开如有系统安全提示，请在系统设置中允许打开。
+2. 首次打开如有系统安全提示，请在系统设置中允许打开。
 
 ## 更新说明
 - 在设置页可执行“手动检查更新”。
