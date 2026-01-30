@@ -1,11 +1,11 @@
 {
-  "version": "0.8.4",
-  "notes": "- 设置页版权文案更新为 TokenLabs",
-  "pub_date": "2026-01-30T12:32:20Z",
+  "version": "0.8.5",
+  "notes": "- 修复自动更新安装时的进程权限问题",
+  "pub_date": "2026-01-30T12:44:13Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVURmttaE9udXplS1ZSSDYwUllkdFNJY0JyZDZUTU9pRmVmTU1PMmpPTXZQYytCeGQzNUJYdWZ3NDFDdFlyM1M3S2lVUVh6cDdGMTFGRm5XTkZqdVJYeS9sRTBBM1BIVGdrPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzY5Nzc1MjYzCWZpbGU6Q29uZHVjdC5hcHAudGFyLmd6CjdvdEtwZzFURGxDR2RYd0Q0NG81SGt5elRqMGZIc3hJdUpkU0VOU2cxK1lQMWpMZmlMZnBFT0IzV0poQzF2dkZXUjNBMzYrMGQxaHYyV20xbGVLU0NRPT0K",
-      "url": "https://github.com/cnodon/Conduct/releases/download/v0.8.4/Conduct.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVURmttaE9udXplS1F4MHAwU3pJZTNJSFBNOW9CZjltaFRBSmxkVURLdUtnVElmZEw5b0cwbTkyYnEzajg5bGRHSllRQmlXc3pCRlNmR3JLY3libno0TzhPS21DNURIM0FjPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzY5Nzc2OTcxCWZpbGU6Q29uZHVjdC5hcHAudGFyLmd6CnAxbDBaZTF4SzRXYVdydVN0ZU1PZ3VQdHBsL1luRmdEeXpIZW50c3J3RUc1NWNFbHJxVVJaRXZGN3RPSUVsZGQrTDVVYWtZb1FZaU1vRlVLMG9oWkF3PT0K",
+      "url": "https://github.com/cnodon/Conduct/releases/download/v0.8.5/Conduct.app.tar.gz"
     }
   }
 }
