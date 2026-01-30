@@ -1,11 +1,11 @@
 {
-  "version": "0.8.2",
-  "notes": "- 修复更新清单访问地址，自动更新可用",
-  "pub_date": "2026-01-30T08:28:00Z",
+  "version": "0.8.3",
+  "notes": "- README 展示团队图片（group.jpg）",
+  "pub_date": "2026-01-30T08:47:28Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "ZFc1MGNuVnpkR1ZrSUdOdmJXMWxiblE2SUhOcFoyNWhkSFZ5WlNCbWNtOXRJSFJoZFhKcElITmxZM0psZENCclpYa0tVbFZVUm10dGFFOXVkWHBsUzFScU5ESkNkVlo2TlN0RlozcENTM2N3UzNGa2QyVkdSSGRZZEhjMU4wOUVlamRPT0ZwSFVUZENUVlUyZDNobE1VaHFTVWxWZEhsVmRYWmpTeXRrUkZsT1prTkNTWFZ6ZVN0UmFYSnJja3d3U2tOemMzZE5QUXAwY25WemRHVmtJR052YlcxbGJuUTZJSFJwYldWemRHRnRjRG94TnpZNU56WXhOakkzQ1dacGJHVTZRMjl1WkhWamRDNWhjSEF1ZEdGeUxtZDZDamhEUzNBMVdYcFdNMUpQYjNSdVdUUjJPVE0wT0ZKSGRHMW1WWEl2VG1GWFFsaFNZemh2U2t0Q1FYQk5UMGgyT1dOcVNHcFdTakF4ZDJvMlRGSlhhVGRwVFZaVVpERlJja2xFTVRac1RrNVBkRzVqTkVGblBUMEs=",
-      "url": "https://github.com/cnodon/Conduct/releases/download/v0.8.2/Conduct.app.tar.gz"
+      "signature": "ZFc1MGNuVnpkR1ZrSUdOdmJXMWxiblE2SUhOcFoyNWhkSFZ5WlNCbWNtOXRJSFJoZFhKcElITmxZM0psZENCclpYa0tVbFZVUm10dGFFOXVkWHBsUzJKS2RGQXpVbTVwWjJKNlREaDVhVkZyYTJaSlZEQlFTVUpMWjFGa09YZHlXVXhSTTBGTU1uWm5SbWd6YWpOWFNXeHRXa2hrVWswM1kwaERhVXROYURWa1RqVlBTMjFWY25sVlJDdGxSV0Z0VkV0dWNHYzRQUXAwY25WemRHVmtJR052YlcxbGJuUTZJSFJwYldWemRHRnRjRG94TnpZNU56WXlORE0zQ1dacGJHVTZRMjl1WkhWamRDNWhjSEF1ZEdGeUxtZDZDbmxPYVZaR0x6UTNSRFpSY21oT1kwWkdkalpDV1ZGMFVtVkNhamRSU0VsWWNWSlJhWE5uT0VoYWNWUnZXa0ZwYnpWS01XUjNNREJZYkhOTFRHbGphVmxEU1hCSWNYVllaR3B0VEUxWFZ6VmFWa3hISzBOM1BUMEs=",
+      "url": "https://github.com/cnodon/Conduct/releases/download/v0.8.3/Conduct.app.tar.gz"
     }
   }
 }
