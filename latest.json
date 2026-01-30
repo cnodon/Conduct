@@ -1,11 +1,11 @@
 {
-  "version": "0.8.1",
-  "notes": "- 自动更新：发现新版本后可一键下载并自动安装\n- 设置项调整：移除“聚焦自动刷新”",
-  "pub_date": "2026-01-30T08:06:31Z",
+  "version": "0.8.2",
+  "notes": "- 修复更新清单访问地址，自动更新可用",
+  "pub_date": "2026-01-30T08:28:00Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "ZFc1MGNuVnpkR1ZrSUdOdmJXMWxiblE2SUhOcFoyNWhkSFZ5WlNCbWNtOXRJSFJoZFhKcElITmxZM0psZENCclpYa0tVbFZVUm10dGFFOXVkWHBsUzJSTEwwaFBiM2RPZG1rd1prZGlhSEp6YWs1VlowODVlVFE1ZFdGb1lraE5XazVMVWtNdlduZEJOVWhQYUVOa0swaG1aVk5CT0RjeFQzWnpNbTV1VkdsVGMwdDVOR2RQVTBkM1dXWlNSM2R3ZDBSb2IxRkpQUXAwY25WemRHVmtJR052YlcxbGJuUTZJSFJwYldWemRHRnRjRG94TnpZNU56WXdNVGt3Q1dacGJHVTZRMjl1WkhWamRDNWhjSEF1ZEdGeUxtZDZDaXRuZWxaQmFXNUlRbFZIWkZKc1RGSnhkRkozUzI5emFIRnlkV0psTVZWUE5XaHlVMWhVZEZGdVpVTkdOVWRTYW1aaWJXa3dZMmhLTlZaVU1ubE5UMlk1TUdwVlNtRlRiR2hSZVZsemFESjZOMGwxYVVOM1BUMEs=",
-      "url": "https://github.com/cnodon/Conduct/releases/download/v0.8.1/Conduct.app.tar.gz"
+      "signature": "ZFc1MGNuVnpkR1ZrSUdOdmJXMWxiblE2SUhOcFoyNWhkSFZ5WlNCbWNtOXRJSFJoZFhKcElITmxZM0psZENCclpYa0tVbFZVUm10dGFFOXVkWHBsUzFScU5ESkNkVlo2TlN0RlozcENTM2N3UzNGa2QyVkdSSGRZZEhjMU4wOUVlamRPT0ZwSFVUZENUVlUyZDNobE1VaHFTVWxWZEhsVmRYWmpTeXRrUkZsT1prTkNTWFZ6ZVN0UmFYSnJja3d3U2tOemMzZE5QUXAwY25WemRHVmtJR052YlcxbGJuUTZJSFJwYldWemRHRnRjRG94TnpZNU56WXhOakkzQ1dacGJHVTZRMjl1WkhWamRDNWhjSEF1ZEdGeUxtZDZDamhEUzNBMVdYcFdNMUpQYjNSdVdUUjJPVE0wT0ZKSGRHMW1WWEl2VG1GWFFsaFNZemh2U2t0Q1FYQk5UMGgyT1dOcVNHcFdTakF4ZDJvMlRGSlhhVGRwVFZaVVpERlJja2xFTVRac1RrNVBkRzVqTkVGblBUMEs=",
+      "url": "https://github.com/cnodon/Conduct/releases/download/v0.8.2/Conduct.app.tar.gz"
     }
   }
 }

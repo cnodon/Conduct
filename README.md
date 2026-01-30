@@ -1,5 +1,3 @@
-<img src="group.jpg" alt="Conduct" width="25%">
-
 # Conduct
 
 Conduct 是一款面向 Claude Code / Codex / Gemini CLI 的 Skills 图形化管理工具。
