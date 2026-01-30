@@ -1,4 +1,4 @@
-![Conduct](group.jpg)
+<img src="group.jpg" alt="Conduct" width="25%">
 
 # Conduct
 
