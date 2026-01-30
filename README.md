@@ -13,6 +13,7 @@ Conduct 是一款面向 Claude Code / Codex / Gemini CLI 的 Skills 图形化管
 
 ### 更新
 - 在设置页快速检查版本更新
+- 发现新版本后可一键下载并自动安装
 
 ## 开箱即用（macOS）
 1. 从 GitHub Releases 下载最新的 `.dmg` 文件。
@@ -21,7 +22,7 @@ Conduct 是一款面向 Claude Code / Codex / Gemini CLI 的 Skills 图形化管
 ## 更新说明
 - 在设置页可执行“手动检查更新”。
 - 可开启“启动时自动检查”。
-- 新版本会跳转到 GitHub Release 下载。
+- 新版本可直接下载并自动安装。
 
 ## Release Notes
 - 每个版本的变更记录与下载文件都在 GitHub Releases 中发布。
