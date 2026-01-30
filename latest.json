@@ -1,11 +1,11 @@
 {
-  "version": "0.8.3",
-  "notes": "- README 展示团队图片（group.jpg）\n- DMG 已签名并公证，可直接打开",
-  "pub_date": "2026-01-30T11:52:59Z",
+  "version": "0.8.4",
+  "notes": "- 设置页版权文案更新为 TokenLabs",
+  "pub_date": "2026-01-30T12:14:50Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "ZFc1MGNuVnpkR1ZrSUdOdmJXMWxiblE2SUhOcFoyNWhkSFZ5WlNCbWNtOXRJSFJoZFhKcElITmxZM0psZENCclpYa0tVbFZVUm10dGFFOXVkWHBsUzFkdVNWcHFiVVZFWWtKUVdIRkdaMnBpUms1VVpWaERlV1ZRYVhFNFYxVnJaMGR2UTA1NFdHMHhOVVpKVEZsTlVrUXpXSHAwUTJneFJsTndkMUJFVlVodFIzaFJiVFptZWtSSkszRnFNRXgyTUhGamNFRm5QUXAwY25WemRHVmtJR052YlcxbGJuUTZJSFJwYldWemRHRnRjRG94TnpZNU56Y3pPVFE1Q1dacGJHVTZRMjl1WkhWamRDNWhjSEF1ZEdGeUxtZDZDalZ4UldWeVMxVmxTMk13VkVKMFZWUmFNa1YwY0N0TlNUSldaVlIwTjJGTFdraG1aVXQzTHpCMWJURnRkSEZXUW10WFlWcEdZVWxtT0M5Qk9GbFFaMWswVVdWWldVdHJNRTlET0hFNVRYVjNSM0l6ZDBKUlBUMEs=",
-      "url": "https://github.com/cnodon/Conduct/releases/download/v0.8.3/Conduct.app.tar.gz"
+      "signature": "ZFc1MGNuVnpkR1ZrSUdOdmJXMWxiblE2SUhOcFoyNWhkSFZ5WlNCbWNtOXRJSFJoZFhKcElITmxZM0psZENCclpYa0tVbFZVUm10dGFFOXVkWHBsUzFaU1NEWXdVbGxrZEZOSlkwSnlaRFpVVFU5cFJtVm1UVTFQTW1wUFRYWlFZeXRDZUdRek5VSllkV1ozTkRGRGRGbHlNMU0zUzJsVlVWaDZjRGRHTVRGR1JtNVhUa1pxZFZKWWVTOXNSVEJCTTFCSVZHZHJQUXAwY25WemRHVmtJR052YlcxbGJuUTZJSFJwYldWemRHRnRjRG94TnpZNU56YzFNall6Q1dacGJHVTZRMjl1WkhWamRDNWhjSEF1ZEdGeUxtZDZDamR2ZEV0d1p6RlVSR3hEUjJSWWQwUTBORzgxU0d0NWVsUnFNR1pJYzNoSmRVcGtVMFZPVTJjeEsxbFFNV3BNWm1sTVpuQkZUMEl6VjBwb1F6RjJka1pYVWpOQk16WXJNR1F4YUhZeVYyMHhiR1ZMVTBOUlBUMEs=",
+      "url": "https://github.com/cnodon/Conduct/releases/download/v0.8.4/Conduct.app.tar.gz"
     }
   }
 }
