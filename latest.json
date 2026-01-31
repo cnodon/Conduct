@@ -1,11 +1,11 @@
 {
-  "version": "0.8.7",
-  "notes": "- 主界面布局优化（Tabs 与刷新按钮留白）\n- 侧栏图标支持直达 GitHub",
-  "pub_date": "2026-01-30T13:16:34Z",
+  "version": "0.9.0",
+  "notes": "- 新增启动统计：客户端每次启动上报一次启动事件到 tokenlabs.cn（install_id / 版本 / 平台 / 系统版本 / 语言 / 时间戳），失败最多重试 3 次，服务端记录 IP，并写入运行日志便于排查。\n- 修复上报重复与日期偏移：启动内仅上报一次，并使用本地时区时间戳。",
+  "pub_date": "2026-01-31T01:28:54.592435Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVURmttaE9udXplS1ZCMGlFdnA0bGRrSzRkRm82aW96OHhYR0VxdDI3REZidlF5R1Jrd2Nrb1FwYUtNb1hRUHdDaTViQk9MeFpEanArOVFZaFFTc3JoeU40TW1RMFkraVFjPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzY5Nzc4OTc3CWZpbGU6Q29uZHVjdC5hcHAudGFyLmd6CjJCWGl0MnlaOFB3UGFZSVliOE5EeWwwRkFKV09UKzdyNnZXeFl1RWlJeGs5L3VqMzhlSFNwUVh4SmcxZ25zSzQvVVFuOXFCQWQ3VWVFb29IUUp5TkFRPT0K",
-      "url": "https://github.com/cnodon/Conduct/releases/download/v0.8.7/Conduct.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVURmttaE9udXplS2NEMi9JSzJnQjdhMEpySTNOeFFUNWFaRzhnU2Z3YWVwQzlIZ3pRR3IzSi9BNDdRWmN0MEpZaFZ2NWJSQ1I0alYvaGlFTmFsbTROWWphRDJxREpGN1E0PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzY5ODIyODk3CWZpbGU6Q29uZHVjdC5hcHAudGFyLmd6CngvWWN4RUQzdFU5SE5iVFFSS0l6UzhOVkJWVk9kbmhLendEbjdyRTJyYzFqZkRLSm01L2lxODNwK0xzYmExQlRDRzJJOVBSQk9pQkFIb3c3aXl6dER3PT0K",
+      "url": "https://github.com/cnodon/Conduct/releases/download/v0.9.0/Conduct.app.tar.gz"
     }
   }
 }
