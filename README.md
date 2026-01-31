@@ -133,3 +133,10 @@ npm run build:tauri
 
 ## 许可证
 MIT
+
+## 发布方案
+
+- /Users/ddmm/Develop/github/ConductApp 为发布App的文件夹（提交github）
+- release_notes.md 中的内容为对应版本的发布公告
+- 只能做：提交二进制文件(.dmg)，提交 release note（用户视角，展示新功能特性）；
+- 不能做：绝对不能提交源代码；Release Note中不要写技术方案；
