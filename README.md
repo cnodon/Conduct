@@ -136,7 +136,8 @@ MIT
 
 ## 发布方案
 
-- /Users/ddmm/Develop/github/ConductApp 为发布App的文件夹（提交github）
+- /Users/ddmm/Develop/github/ConductApp 为发布 App 的文件夹（提交 GitHub）
 - release_notes.md 中的内容为对应版本的发布公告
-- 只能做：提交二进制文件(.dmg)，提交 release note（用户视角，展示新功能特性）；
-- 不能做：绝对不能提交源代码；Release Note中不要写技术方案；
+- 只能做：提交二进制文件（`.dmg`），提交 release note（用户视角，突出新功能），并同步更新 `tokenlabs.cn/download.html` 页面
+- 不能做：Release Note 中不要写技术方案
+- 更多发布、OTA 与 tokenlabs 托管的规则详见 [publish.md](publish.md)

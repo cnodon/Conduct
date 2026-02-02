@@ -1,11 +1,11 @@
 {
-  "version": "0.9.0",
-  "notes": "- 新增启动统计：客户端每次启动上报一次启动事件到 tokenlabs.cn（install_id / 版本 / 平台 / 系统版本 / 语言 / 时间戳），失败最多重试 3 次，服务端记录 IP，并写入运行日志便于排查。\n- 修复上报重复与日期偏移：启动内仅上报一次，并使用本地时区时间戳。",
-  "pub_date": "2026-01-31T01:00:51Z",
+  "version": "0.9.1",
+  "notes": "- 上线 Conduct 0.9.1，自动更新通道统一托管于 tokenlabs.cn，确保 macOS 用户能在不暴露源码的情况下持续接收新版本。\n- 同步更新 landing page 与下载中心，提供 tokenlabs.cn/download.html 的新入口并突出 OTA 信息。\n- /Users/ddmm/Develop/github/ConductApp 为发布文件夹\n- 只能做：提交二进制文件(.dmg)，提交 release note（用户视角，展示新功能特性）；\n- 不能做：Release Note 不要写技术方案；",
+  "pub_date": "2026-02-02T04:46:58Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVURmttaE9udXplS1hFUVhWYkRnajU2alMxdmJvZWE1aFJGSnVSNWQ3VTI0Q3ArdHBURjExOVZWSkNmWmRZc0ZWODV3RUFqcTNuWGZ5clRnUXJtcDZkVXhYemVoTWN1Y3dZPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzY5ODIxMjIzCWZpbGU6Q29uZHVjdC5hcHAudGFyLmd6CnhraXJFb1UvVHNJUkJqOUx5U1lJMU56UVVTbit2NnA3MzZDTGdON0R6MVVUN3I2eWYzYnZIc3VkK3FZTlBCbDhNbEdENzJJVmpGL011WFp3eGRjY0FnPT0K",
-      "url": "https://github.com/cnodon/Conduct/releases/download/v0.9.0/Conduct.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVURmttaE9udXplS1ZVZXBOakYzWVY0TTJlVDVnaldHZmRKVG9rakVyYzc5RUN5TEhnb1lNd3F6Y2kzWURybGtUNjFaYndmemVWcDJ1S3BjTGExTmN4TERoQi92VzluQkEwPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzcwMDA3NjA4CWZpbGU6Q29uZHVjdC5hcHAudGFyLmd6Ck85RXBGbEZTODRRYmQ4NERyRmZud296UFV4R3gzbHNZSmw1Q2FaV3d5RmpiSC9JcFJHUXFuRVRtS3RSVzVlN1o3U1hsZVVhdHl2aXpybi8vNlYyYkFRPT0K",
+      "url": "https://tokenlabs.cn/downloads/conduct/v0.9.1/Conduct.app.tar.gz"
     }
   }
 }
