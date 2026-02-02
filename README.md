@@ -21,8 +21,18 @@ Conduct 是一款面向 Claude Code / Codex / Gemini CLI 的 Skills 图形化管
 - 发现新版本后可一键下载并自动安装，支持展示 Release Notes 与下载进度
 
 ## 开箱即用（macOS）
-1. 从 GitHub Releases 下载最新的 `.dmg` 文件（当前版本：v0.9.1）
-2. 首次打开如有系统安全提示，请在系统设置中允许打开
+1. 在 https://tokenlabs.cn/download.html 查看最新版本与更新说明
+2. 从 GitHub 仓库下载最新的 `.dmg` 文件（当前版本：v0.9.3）
+3. 首次打开如有系统安全提示，请在系统设置中允许打开
+
+
+## v0.9.3 更新
+- OTA 升级包更新（tokenlabs.cn 提供更新清单与安装包）。
+
+## v0.9.2 更新
+- 主界面刷新按钮改为“更新本地Skills”。
+- 技能市场更新提示更简洁，不再展示技术细节。
+- 主界面图标点击改为跳转下载页。
 
 ## 更新说明
 - 在设置页可执行“手动检查更新”
@@ -33,7 +43,7 @@ Conduct 是一款面向 Claude Code / Codex / Gemini CLI 的 Skills 图形化管
 - https://tokenlabs.cn/download.html
 
 ## Release Notes
-- 每个版本的变更记录与下载文件都在 GitHub Releases 中发布
+- 变更记录发布在此页面，下载文件在 GitHub 仓库中提供
 
 ---
 
