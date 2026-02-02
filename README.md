@@ -22,9 +22,12 @@ Conduct 是一款面向 Claude Code / Codex / Gemini CLI 的 Skills 图形化管
 
 ## 开箱即用（macOS）
 1. 在 https://tokenlabs.cn/download.html 查看最新版本与更新说明
-2. 从 GitHub 仓库下载最新的 `.dmg` 文件（当前版本：v0.9.4）
+2. 从 GitHub 仓库下载最新的 `.dmg` 文件（当前版本：v0.9.5）
 3. 首次打开如有系统安全提示，请在系统设置中允许打开
 
+
+## v0.9.5 更新
+- 修复主界面顶部“主页”按钮点击无响应问题。
 
 ## v0.9.4 更新
 - 设置页移除“市场技能数量”显示。
