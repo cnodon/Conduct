@@ -1,5 +1,5 @@
-# Conduct
 <div align="center">
+# Conduct
 Conduct 是一款面向 Claude Code / Codex / Gemini CLI 的 Skills 图形化软件。
 </div>
 <div align="center">
