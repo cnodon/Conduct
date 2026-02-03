@@ -1,7 +1,7 @@
 # Conduct
-
+<div align="center">
 Conduct 是一款面向 Claude Code / Codex / Gemini CLI 的 Skills 图形化软件。
-
+</div>
 <div align="center">
   <img src="wechat_group.jpg" width="50%" alt="Conduct App" />
 </div>
